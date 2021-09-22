@@ -49,7 +49,7 @@ function NavigationBar() {
           <Navbar.Brand href="/">Fit-Forward</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="m">
+            <Nav className="ml-auto">
               <Nav.Item>
                 <Nav.Link href="/">Home</Nav.Link>
               </Nav.Item>
