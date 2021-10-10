@@ -6,25 +6,23 @@ import Home from "./pages/Home";
 import Registration from "./pages/Registration";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-import FoodSearch from "./components/FoodSearch";
+import AddFood from "./pages/AddFood";
 
-import { Layout } from "./components/Layout";
+// import { Layout } from "./components/Layout";
 
 function App() {
   return (
     <>
       <NavigationBar />
-      <Layout>
-        <Router>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/register" component={Registration} />
-            <Route path="/login" component={Login} />
-            <Route path="/dashboard" component={Dashboard} />
-            <Route path="/addfood" component={FoodSearch} />
-          </Switch>
-        </Router>
-      </Layout>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/register" component={Registration} />
+          <Route path="/login" component={Login} />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/addfood" component={AddFood} />
+        </Switch>
+      </Router>
     </>
   );
 }

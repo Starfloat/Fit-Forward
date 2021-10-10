@@ -14,6 +14,8 @@ const db = require("./models");
 // Routers
 const usersRouter = require("./routes/Users");
 app.use("/", usersRouter);
+const foodIntakeRouter = require("./routes/FoodIntake");
+app.use("/foodintake", foodIntakeRouter);
 
 db.sequelize.sync().then(() => {
   app.listen(3001, () => {

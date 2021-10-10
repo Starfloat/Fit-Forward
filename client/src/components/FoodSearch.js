@@ -1,6 +1,16 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import { Button } from "react-bootstrap";
+import styled from "styled-components";
+
+const Styles = styled.div`
+  Button {
+    margin-left: 5px;
+  }
+  .search {
+    margin-top: 25px;
+  }
+`;
 
 const FoodSearch = () => {
   const [foodData, setFoodData] = useState("");
@@ -31,15 +41,21 @@ const FoodSearch = () => {
 
   return (
     <div>
-      <section>
-        <input type="text" placeholder="Enter food here..." onChange={query} />
-        <Button onClick={getNutrients}>Search</Button>
-      </section>
+      <Styles>
+        <section className="search">
+          <input
+            type="text"
+            placeholder="Enter food here..."
+            onChange={query}
+          />
+          <Button onClick={getNutrients}>Search</Button>
+        </section>
+      </Styles>
 
       {/* conditional rendering, if there's a value in foodData, render */}
       {foodData && (
         <div className="food-data">
-          <h3>{foodData.foods[0].description}</h3>
+          <p className="lead">{foodData.foods[0].description}</p>
           <ul>
             <li>Calories: {foodData.foods[0].foodNutrients[2].value}</li>
             <li>Carbohydrates: {foodData.foods[0].foodNutrients[2].value}</li>
