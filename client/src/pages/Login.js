@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import axios from "axios";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import { AuthContext } from "../components/AuthContext";
+import { AuthContext } from "../utils/AuthContext";
 
 const Styles = styled.div`
   text-align: center;

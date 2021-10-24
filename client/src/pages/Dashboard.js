@@ -1,18 +1,18 @@
-import React from "react";
-import { Route, Link } from "react-router-dom";
+import React, { useState } from "react";
+import FoodForm from "../components/FoodForm";
 
-import AddFood from "./AddFood";
+import Grid from "@material-ui/core/Grid";
+import Container from "@material-ui/core/Container";
 
 const Dashboard = () => {
   return (
-    <div>
-      <ul>
-        <li>
-          <Link to="/addfood">Add Food</Link>
-          <Route exact path="/addfood" component={AddFood} />
-        </li>
-      </ul>
-    </div>
+    <Container maxWidth="lg">
+      <Grid container spacing={2}>
+        <Grid item xs={8}>
+          <FoodForm addfood />
+        </Grid>
+      </Grid>
+    </Container>
   );
 };
 
