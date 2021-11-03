@@ -7,10 +7,20 @@ import TextField from "@material-ui/core/TextField";
 import styled from "styled-components";
 
 const Styles = styled.div`
-  margin-top: 5%;
+  h3 {
+    margin-top: 1em;
+  }
+  .textField {
+    margin-bottom: 15px;
+  }
   .form-group {
     display: flex;
-    float: left;
+    flex-direction: column;
+    align-items: center;
+  }
+  margin-left: 5em;
+  button {
+    margin-top: 15px;
   }
 `;
 
@@ -51,7 +61,7 @@ const FoodForm = () => {
 
   return (
     <Styles>
-      <h2>What did you eat?</h2>
+      <h3>Manual Input</h3>
       <div className="AddFoodContainer">
         <Formik
           initialValues={initValues}
@@ -60,35 +70,45 @@ const FoodForm = () => {
         >
           <Form className="form-group">
             <TextField
+              className="textField"
               name="foodName"
               variant="outlined"
               placeholder="(ex...Bread)"
               label="Food Name"
             ></TextField>
             <TextField
+              className="textField"
               name="protein"
               variant="outlined"
               label="Protein"
             ></TextField>
-            <TextField name="fat" variant="outlined" label="Fats"></TextField>
             <TextField
+              className="textField"
+              name="fat"
+              variant="outlined"
+              label="Fats"
+            ></TextField>
+            <TextField
+              className="textField"
               name="carbohydrate"
               variant="outlined"
               label="Carbohydrates"
             ></TextField>
             <TextField
+              className="textField"
               name="calories"
               variant="outlined"
               label="Calories"
             ></TextField>
             <TextField
+              className="textField"
               name="servingSize"
               variant="outlined"
               label="Serving Size"
             ></TextField>
-            <button color="primary" variant="contained" type="submit">
+            <Button color="primary" variant="contained" type="submit">
               Submit
-            </button>
+            </Button>
           </Form>
         </Formik>
       </div>
