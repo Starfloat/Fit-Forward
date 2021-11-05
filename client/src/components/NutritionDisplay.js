@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import FoodForm from "../components/FoodForm";
 
 import Grid from "@material-ui/core/Grid";
 import { FaUtensils } from "react-icons/fa";

@@ -3,8 +3,9 @@ import { Link, Route, Switch } from "react-router-dom";
 
 import NutritionDisplay from "../components/NutritionDisplay";
 import FoodHistory from "../components/FoodHistory";
-import AddFood from "../pages/AddFood";
+import AddFood from "../components/FoodSearch";
 import FoodForm from "../components/FoodForm";
+import AddActivity from "./AddActivity";
 
 import styled from "styled-components";
 import Grid from "@material-ui/core/Grid";
@@ -30,6 +31,9 @@ const Dashboard = () => {
                 <AddFood />
                 <FoodForm />
               </div>
+            </Route>
+            <Route exact path={`${path}/addactivity`}>
+              <AddActivity />
             </Route>
           </Grid>
         </Grid>
