@@ -1,5 +1,5 @@
 import React from "react";
-import FoodList from "../components/FoodList";
+import FoodList from "./FoodList";
 
 const FoodSearchResults = (props) => {
   return (
