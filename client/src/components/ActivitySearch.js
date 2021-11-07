@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ActivitySearchResults from "../components/ActivitySearchResults";
 
@@ -23,7 +23,7 @@ const ActivitySearchStyled = styled.div`
 
 const SearchActivity = () => {
   const [error, setError] = useState();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
   const [searchResult, setSearchResult] = useState([]);
   const [query, setQuery] = useState("");
 
@@ -38,7 +38,7 @@ const SearchActivity = () => {
           const transformed = data
             .filter((val) => {
               if (query == "") {
-                return val;
+                return null;
               } else if (
                 val.description.toLowerCase().includes(query.toLowerCase())
               ) {
@@ -62,14 +62,24 @@ const SearchActivity = () => {
     }
   };
 
-  const handleOnSubmit = () => {
-    handleActivitySearch();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsSearching(false);
+      handleActivitySearch();
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [query]);
+
+  const handleQueryTextChange = (e) => {
+    setQuery(e.target.value);
+    setIsSearching(true);
   };
 
   let display = <p>No activities found</p>;
 
-  if (isLoading) {
-    display = <p>loading...</p>;
+  if (isSearching) {
+    display = <p>searching...</p>;
   } else if (error) {
     display = <p>{error}</p>;
   } else if (searchResult.length > 0) {
@@ -85,9 +95,8 @@ const SearchActivity = () => {
             <input
               type="search"
               placeholder="Search activity..."
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={handleQueryTextChange}
             />
-            <button onClick={handleOnSubmit}>Search</button>
           </div>
           {display}
         </div>
