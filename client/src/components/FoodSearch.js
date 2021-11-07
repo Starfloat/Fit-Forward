@@ -4,7 +4,7 @@ import FoodSearchResults from "./FoodSearchResults";
 import Debounce from "../utils/Debounce";
 import styled from "styled-components";
 
-const SearchFoodStyled = styled.div`
+const FoodSearchStyled = styled.div`
   h3 {
     margin-top: 1em;
   }
@@ -17,7 +17,7 @@ const SearchFoodStyled = styled.div`
     border: 1px solid lightgray;
   }
   .container {
-    margin-left: 1.5em;
+    margin-left: 1em;
   }
 `;
 
@@ -85,7 +85,7 @@ const SearchFood = () => {
     display = <FoodSearchResults foods={foodResults} />;
   }
   return (
-    <SearchFoodStyled>
+    <FoodSearchStyled>
       <section className="foodSearch">
         <div className="container">
           <h3>Search Database</h3>
@@ -99,7 +99,7 @@ const SearchFood = () => {
           {display}
         </div>
       </section>
-    </SearchFoodStyled>
+    </FoodSearchStyled>
   );
 };
 

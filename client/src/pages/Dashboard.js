@@ -11,7 +11,10 @@ import styled from "styled-components";
 import Grid from "@material-ui/core/Grid";
 
 const DashStyled = styled.div`
-  .AddFood {
+  .addFood {
+    display: flex;
+  }
+  .addActivity {
     display: flex;
   }
 `;
@@ -27,13 +30,15 @@ const Dashboard = () => {
               <NutritionDisplay />
             </Route>
             <Route exact path={`${path}/addfood`}>
-              <div className="AddFood">
+              <div className="addFood">
                 <AddFood />
                 <FoodForm />
               </div>
             </Route>
             <Route exact path={`${path}/addactivity`}>
-              <AddActivity />
+              <div className="addActivity">
+                <AddActivity />
+              </div>
             </Route>
           </Grid>
         </Grid>

@@ -2,6 +2,25 @@ import React, { useState } from "react";
 import axios from "axios";
 import ActivitySearchResults from "../components/ActivitySearchResults";
 
+import styled from "styled-components";
+
+const ActivitySearchStyled = styled.div`
+  h3 {
+    margin-top: 1em;
+  }
+  .activitySearch .control input {
+    font-size: 1.6rem;
+    padding: 15px 10px;
+    width: 90%;
+    max-width: 600px;
+    margin: 25px 0;
+    border: 1px solid lightgray;
+  }
+  .container {
+    margin-left: 1em;
+  }
+`;
+
 const SearchActivity = () => {
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -58,20 +77,22 @@ const SearchActivity = () => {
   }
 
   return (
-    <section className="activitySearch">
-      <div className="container">
-        <h3>Search Database</h3>
-        <div className="control">
-          <input
-            type="search"
-            placeholder="Search activity..."
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <button onClick={handleOnSubmit}>Search</button>
+    <ActivitySearchStyled>
+      <section className="activitySearch">
+        <div className="container">
+          <h3>Search Database</h3>
+          <div className="control">
+            <input
+              type="search"
+              placeholder="Search activity..."
+              onChange={(e) => setQuery(e.target.value)}
+            />
+            <button onClick={handleOnSubmit}>Search</button>
+          </div>
+          {display}
         </div>
-        {display}
-      </div>
-    </section>
+      </section>
+    </ActivitySearchStyled>
   );
 };
 
