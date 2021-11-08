@@ -1,7 +1,8 @@
 import React from "react";
-import { Link, Route, Switch } from "react-router-dom";
+import { withRouter, Route, Switch } from "react-router-dom";
 
 import NutritionDisplay from "../components/NutritionDisplay";
+import ActivityHistory from "../components/ActivityHistory";
 import FoodHistory from "../components/FoodHistory";
 import AddFood from "../components/FoodSearch";
 import FoodForm from "../components/FoodForm";
@@ -48,10 +49,15 @@ const Dashboard = () => {
               <FoodHistory />
             </Route>
           </Grid>
+          <Grid item sm={6}>
+            <Route exact path={path}>
+              <ActivityHistory />
+            </Route>
+          </Grid>
         </Grid>
       </DashStyled>
     </Switch>
   );
 };
 
-export default Dashboard;
+export default withRouter(Dashboard);

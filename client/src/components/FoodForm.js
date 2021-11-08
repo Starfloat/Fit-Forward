@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import React from "react";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
 import Button from "@material-ui/core/Button";
@@ -25,17 +25,18 @@ const Styles = styled.div`
 `;
 
 const FoodForm = () => {
-  const [food, setFood] = useState([
-    {
-      id: null,
-      foodName: null,
-      fats: null,
-      carbohydrates: null,
-      calories: null,
-      servingSize: null,
-    },
-  ]);
-  const addFood = (name) => {};
+  // const [food, setFood] = useState([
+  //   {
+  //     id: null,
+  //     foodName: null,
+  //     fats: null,
+  //     carbohydrates: null,
+  //     calories: null,
+  //     servingSize: null,
+  //   },
+  // ]);
+
+  // const addFood = (name) => {};
 
   const initValues = {
     foodName: "",
