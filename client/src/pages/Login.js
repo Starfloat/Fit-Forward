@@ -21,7 +21,7 @@ const Styles = styled.div`
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { setAuthState } = useContext(AuthContext);
+  const { setIsAuth } = useContext(AuthContext);
 
   let history = useHistory();
 
@@ -32,8 +32,8 @@ function Login() {
         alert(response.data.error);
       } else {
         localStorage.setItem("accessToken", response.data);
-        setAuthState(true);
-        history.push("/");
+        setIsAuth(true);
+        history.push("/dashboard");
       }
     });
   };
