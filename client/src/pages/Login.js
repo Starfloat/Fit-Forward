@@ -32,7 +32,11 @@ function Login() {
         alert(response.data.error);
       } else {
         localStorage.setItem("accessToken", response.data);
-        setIsAuth(true);
+        setIsAuth({
+          username: response.data.username,
+          id: response.data.id,
+          status: true,
+        });
         history.push("/dashboard");
       }
     });

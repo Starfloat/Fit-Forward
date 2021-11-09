@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { withRouter, Route, Switch } from "react-router-dom";
+import { AuthContext } from "../utils/AuthContext";
 
 import NutritionDisplay from "../components/NutritionDisplay";
 import ActivityHistory from "../components/ActivityHistory";
