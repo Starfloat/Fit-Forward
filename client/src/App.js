@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import { AuthContext } from "./utils/AuthContext";
@@ -12,13 +13,17 @@ import Dashboard from "./pages/Dashboard";
 import About from "./pages/About";
 
 function App() {
-  const [isAuth, setIsAuth] = useState(true); // should be false, fix later
+  const [isAuth, setIsAuth] = useState({
+    username: "fdsf",
+    id: 0,
+    status: false,
+  }); // should be false, fix later
 
   return (
     <>
       <AuthContext.Provider value={{ isAuth, setIsAuth }}>
-        <NavigationBar />
         <Router>
+          <NavigationBar />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
@@ -26,7 +31,7 @@ function App() {
             <PrivateRoute
               path="/dashboard"
               component={Dashboard}
-              isAuth={isAuth}
+              isAuth={isAuth.status}
             />
             <Route path="/about" component={About} />
           </Switch>

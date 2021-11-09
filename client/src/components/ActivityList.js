@@ -33,14 +33,6 @@ const ActivityList = (props) => {
             </tr>
           </tbody>
         </Table>
-        {/* <h5>{props.activity.activityName}</h5>
-          <ul>
-            <li>{props.activity.description}</li>
-            <li>{props.activity.mets}</li>
-            <li>
-              <FaPlus className="icon" />
-            </li>
-          </ul> */}
       </Styled>
     </React.Fragment>
   );

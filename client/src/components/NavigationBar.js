@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useContext } from "react";
 import axios from "axios";
+
+import { LinkContainer } from "react-router-bootstrap";
+import { useHistory } from "react-router-dom";
 
 import { AuthContext } from "../utils/AuthContext";
 
 import { Nav, Navbar, Button } from "react-bootstrap";
+import { Layout } from "../UI/Layout";
 import styled from "styled-components";
 
 const NavStyle = styled.div`
@@ -18,10 +21,13 @@ const NavStyle = styled.div`
       color: #ff7664;
     }
   }
+  .nav-items {
+    float: right;
+  }
 `;
 
 const NavigationBar = () => {
-  const [isAuth, setIsAuth] = useState(AuthContext);
+  const { isAuth, setIsAuth } = useContext(AuthContext);
   const history = useHistory();
 
   useEffect(() => {
@@ -33,9 +39,14 @@ const NavigationBar = () => {
       })
       .then((response) => {
         if (response.data.error) {
-          setIsAuth(false);
+          setIsAuth({ ...isAuth, status: false });
         } else {
-          setIsAuth(true);
+          console.log(response.data);
+          setIsAuth({
+            username: response.data.username,
+            id: response.data.id,
+            status: true,
+          });
         }
       });
   }, []);
@@ -43,52 +54,63 @@ const NavigationBar = () => {
   const logout = () => {
     localStorage.removeItem("accessToken");
     history.push("/");
-    setIsAuth(false);
+    setIsAuth({ username: "", id: 0, status: false });
   };
 
   return (
     <AuthContext.Provider value={{ isAuth, setIsAuth }}>
       <NavStyle>
-        <Navbar bg="primary" expand="lg">
-          <Navbar.Brand href="/">Fit-Forward</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ml-auto">
-              <Nav.Item>
-                <Nav.Link href="/">Home</Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link href="/about">About</Nav.Link>
-              </Nav.Item>
-              {!isAuth ? (
-                <>
-                  <Nav.Item>
-                    <Nav.Link href="/login">
-                      <Button variant="light">Login</Button>
-                    </Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link href="/register">
-                      <Button variant="light">Register</Button>
-                    </Nav.Link>
-                  </Nav.Item>
-                </>
-              ) : (
-                <>
-                  <Nav.Item>
-                    <Nav.Link href="/dashboard">DashBoard</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link href="/">
-                      <Button variant="secondary" onClick={logout}>
+        <Navbar bg="dark" expand="lg" variant="dark">
+          <Layout>
+            <Navbar.Brand href="/">Fit-Forward</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav
+                className="mr-auto"
+                className="justify-content-end"
+                style={{ width: "100%" }}
+              >
+                <LinkContainer to="/">
+                  <Nav.Link>Home</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/about">
+                  <Nav.Link>About</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/contact">
+                  <Nav.Link>Contact</Nav.Link>
+                </LinkContainer>
+                {!isAuth.status ? (
+                  <>
+                    <LinkContainer to="/login">
+                      <Nav.Link>
+                        <Button size="sm" variant="light">
+                          Login
+                        </Button>
+                      </Nav.Link>
+                    </LinkContainer>
+                    <LinkContainer to="/register">
+                      <Nav.Link>
+                        <Button size="sm" variant="light">
+                          Register
+                        </Button>
+                      </Nav.Link>
+                    </LinkContainer>
+                  </>
+                ) : (
+                  <>
+                    <LinkContainer to="/dashboard">
+                      <Nav.Link>DashBoard</Nav.Link>
+                    </LinkContainer>
+                    <Nav.Link>
+                      <Button variant="primary" size="sm" onClick={logout}>
                         Log Out
                       </Button>
                     </Nav.Link>
-                  </Nav.Item>
-                </>
-              )}
-            </Nav>
-          </Navbar.Collapse>
+                  </>
+                )}
+              </Nav>
+            </Navbar.Collapse>
+          </Layout>
         </Navbar>
       </NavStyle>
     </AuthContext.Provider>
