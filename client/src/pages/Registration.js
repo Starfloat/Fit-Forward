@@ -36,6 +36,7 @@ function Registration() {
     height: "",
     weight: "",
     targetWeight: "",
+    targetCalories: "",
   };
 
   const validationSchema = Yup.object().shape({
@@ -46,6 +47,7 @@ function Registration() {
     height: Yup.number().required().positive().integer(),
     weight: Yup.number().required().positive(),
     targetWeight: Yup.number().required().positive(),
+    targetCalories: Yup.number().required().positive(),
   });
 
   const onSubmit = (data) => {
@@ -108,6 +110,10 @@ function Registration() {
           <label>Target Weight: </label>
           <ErrorMessage name="targetWeight" component="span" />
           <Field autoComplete="off" name="targetWeight" />
+
+          <label>Target Calories: </label>
+          <ErrorMessage name="targetWeight" component="span" />
+          <Field autoComplete="off" name="targetCalories" />
 
           <Button type="submit">Register</Button>
         </Form>

@@ -16,6 +16,7 @@ import About from "./pages/About";
 function App() {
   const [isAuth, setIsAuth] = useState({
     username: "",
+    targetCalories: "",
     id: 0,
     status: false,
   });
@@ -36,6 +37,7 @@ function App() {
           setIsAuth({
             username: response.data.username,
             id: response.data.id,
+            targetCalories: response.data.targetCalories,
             status: true,
           });
         }

@@ -26,7 +26,10 @@ function Login() {
   let history = useHistory();
 
   const login = () => {
-    const data = { username: username, password: password };
+    const data = {
+      username: username,
+      password: password,
+    };
     axios.post("http://localhost:3001/login", data).then((response) => {
       console.log(response.data);
       if (response.data.error) {
@@ -36,6 +39,7 @@ function Login() {
         setIsAuth({
           username: response.data.username,
           id: response.data.id,
+          targetCalories: response.data.targetCalories,
           status: true,
         });
         history.push("/");

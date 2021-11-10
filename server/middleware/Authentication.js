@@ -10,6 +10,7 @@ const validateToken = (req, res, next) => {
   try {
     // variable verify valid token, it uses the random string in user.js
     const validToken = verify(accessToken, "3X2xOjbneC");
+    req.user = validToken;
     if (validToken) {
       // moves forward with the request placed before the middleware
       return next();

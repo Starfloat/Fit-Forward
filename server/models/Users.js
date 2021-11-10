@@ -28,6 +28,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
+    targetCalories: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
   });
 
   Users.associate = (models) => {

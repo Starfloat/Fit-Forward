@@ -7,8 +7,16 @@ const { validateToken } = require("../middleware/Authentication");
 
 // logic for registration
 router.post("/", async (req, res) => {
-  const { username, password, gender, birthday, height, weight, targetWeight } =
-    req.body;
+  const {
+    username,
+    password,
+    gender,
+    birthday,
+    height,
+    weight,
+    targetWeight,
+    targetCalories,
+  } = req.body;
   bcrpyt.hash(password, 10).then((hash) => {
     Users.create({
       username: username,
@@ -18,6 +26,7 @@ router.post("/", async (req, res) => {
       height: height,
       weight: weight,
       targetWeight: targetWeight,
+      targetCalories: targetCalories,
     });
     res.json("SUCCESS");
   });
@@ -25,8 +34,9 @@ router.post("/", async (req, res) => {
 
 // logic for login
 router.post("/login", async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, targetCalories } = req.body;
   const user = await Users.findOne({ where: { username: username } });
+
   if (!user) res.json({ error: "User not found" });
 
   bcrpyt.compare(password, user.password).then((pwMatch) => {
@@ -35,17 +45,27 @@ router.post("/login", async (req, res) => {
 
     // grabs username from user const
     const accessToken = sign(
-      { username: user.username, id: user.id },
+      {
+        username: user.username,
+        id: user.id,
+        targetCalories: user.targetCalories,
+      },
       "3X2xOjbneC"
     );
 
-    res.json(accessToken);
+    res.json({
+      token: accessToken,
+      id: user.id,
+      username: username,
+      targetCalories: targetCalories,
+    });
   });
 });
 
 // checks if user is authenticated
 router.get("/auth", validateToken, (req, res) => {
   res.json(req.user);
+  console.log(req.user);
 });
 
 module.exports = router;
