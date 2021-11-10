@@ -21,23 +21,24 @@ const Styles = styled.div`
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { setIsAuth } = useContext(AuthContext);
+  const { isAuth, setIsAuth } = useContext(AuthContext);
 
   let history = useHistory();
 
   const login = () => {
     const data = { username: username, password: password };
     axios.post("http://localhost:3001/login", data).then((response) => {
+      console.log(response.data);
       if (response.data.error) {
         alert(response.data.error);
       } else {
-        localStorage.setItem("accessToken", response.data);
+        localStorage.setItem("accessToken", response.data.token);
         setIsAuth({
           username: response.data.username,
           id: response.data.id,
           status: true,
         });
-        history.push("/dashboard");
+        history.push("/");
       }
     });
   };

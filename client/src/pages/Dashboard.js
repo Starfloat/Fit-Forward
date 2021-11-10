@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { withRouter, Route, Switch } from "react-router-dom";
 import { AuthContext } from "../utils/AuthContext";
 
@@ -9,6 +9,7 @@ import AddFood from "../components/FoodSearch";
 import FoodForm from "../components/FoodForm";
 import AddActivity from "./AddActivity";
 
+import { Layout } from "../UI/Layout";
 import styled from "styled-components";
 import Grid from "@material-ui/core/Grid";
 
@@ -22,42 +23,49 @@ const DashStyled = styled.div`
 `;
 
 const Dashboard = () => {
+  const { isAuth } = useContext(AuthContext);
+
   const path = "/dashboard";
   return (
-    <Switch>
-      <DashStyled>
-        <Grid container spacing={6}>
-          <Grid item lg={12}>
-            <Route exact path={path}>
-              <NutritionDisplay />
-            </Route>
-            <Route exact path={`${path}/addfood`}>
-              <div className="addFood">
-                <AddFood />
-                <FoodForm />
-              </div>
-            </Route>
-            <Route exact path={`${path}/addactivity`}>
-              <div className="addActivity">
-                <AddActivity />
-              </div>
-            </Route>
-          </Grid>
-        </Grid>
-        <Grid container spacing={0}>
-          <Grid item sm={6}>
-            <Route exact path={path}>
-              <FoodHistory />
-            </Route>
-          </Grid>
-          <Grid item sm={6}>
-            <Route exact path={path}>
-              <ActivityHistory />
-            </Route>
-          </Grid>
-        </Grid>
-      </DashStyled>
-    </Switch>
+    <>
+      <Layout>
+        <h2>Welcome {isAuth.username}</h2>
+        <Switch>
+          <DashStyled>
+            <Grid container spacing={6}>
+              <Grid item lg={12}>
+                <Route exact path={path}>
+                  <NutritionDisplay />
+                </Route>
+                <Route exact path={`${path}/addfood`}>
+                  <div className="addFood">
+                    <AddFood />
+                    <FoodForm />
+                  </div>
+                </Route>
+                <Route exact path={`${path}/addactivity`}>
+                  <div className="addActivity">
+                    <AddActivity />
+                  </div>
+                </Route>
+              </Grid>
+            </Grid>
+            <Grid container spacing={0}>
+              <Grid item sm={6}>
+                <Route exact path={path}>
+                  <FoodHistory />
+                </Route>
+              </Grid>
+              <Grid item sm={6}>
+                <Route exact path={path}>
+                  <ActivityHistory />
+                </Route>
+              </Grid>
+            </Grid>
+          </DashStyled>
+        </Switch>
+      </Layout>
+    </>
   );
 };
 

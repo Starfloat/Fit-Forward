@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -14,10 +15,34 @@ import About from "./pages/About";
 
 function App() {
   const [isAuth, setIsAuth] = useState({
-    username: "fdsf",
+    username: "",
     id: 0,
     status: false,
-  }); // should be false, fix later
+  });
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/auth/", {
+        headers: {
+          accessToken: localStorage.getItem("accessToken"),
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.data.error) {
+          setIsAuth({ ...isAuth, status: false });
+        } else {
+          console.log("use effect ran auth");
+          setIsAuth({
+            username: response.data.username,
+            id: response.data.id,
+            status: true,
+          });
+        }
+      });
+  }, []);
+
+  console.log(isAuth);
 
   return (
     <>

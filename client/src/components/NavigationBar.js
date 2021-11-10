@@ -30,27 +30,6 @@ const NavigationBar = () => {
   const { isAuth, setIsAuth } = useContext(AuthContext);
   const history = useHistory();
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:3001/auth", {
-        headers: {
-          accessToken: localStorage.getItem("accessToken"),
-        },
-      })
-      .then((response) => {
-        if (response.data.error) {
-          setIsAuth({ ...isAuth, status: false });
-        } else {
-          console.log(response.data);
-          setIsAuth({
-            username: response.data.username,
-            id: response.data.id,
-            status: true,
-          });
-        }
-      });
-  }, []);
-
   const logout = () => {
     localStorage.removeItem("accessToken");
     history.push("/");
@@ -62,7 +41,10 @@ const NavigationBar = () => {
       <NavStyle>
         <Navbar bg="dark" expand="lg" variant="dark">
           <Layout>
-            <Navbar.Brand href="/">Fit-Forward</Navbar.Brand>
+            <LinkContainer to="/">
+              <Navbar.Brand>Fit-Forward</Navbar.Brand>
+            </LinkContainer>
+
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav

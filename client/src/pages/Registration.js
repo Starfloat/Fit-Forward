@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import styled from "styled-components";
 import { Button } from "react-bootstrap";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const Styles = styled.div`
   text-align: center;
@@ -25,6 +26,8 @@ const Styles = styled.div`
 `;
 
 function Registration() {
+  const history = useHistory();
+
   const initValues = {
     username: "",
     password: "",
@@ -49,6 +52,7 @@ function Registration() {
     axios.post("http://localhost:3001/", data).then(() => {
       console.log(data);
     });
+    history.push("/");
   };
 
   return (
