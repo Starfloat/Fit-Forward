@@ -7,7 +7,6 @@ import exercise from "../assets/exercise.jpg";
 import goals from "../assets/goals.jpg";
 
 import { Layout } from "../UI/Layout";
-// import { Grid } from "@material-ui/core";
 import Container from "react-bootstrap/Container";
 import { Col, Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
@@ -39,7 +38,7 @@ function Home() {
             activities.
           </p>
           <hr className="my-2" />
-          <p>The best inventment you've ever make is your own health.</p>
+          <p>The best inventment you can ever make is your own health.</p>
           <p className="lead">
             <Button color="primary">Sign up</Button>
           </p>
