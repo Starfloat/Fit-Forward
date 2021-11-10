@@ -78,7 +78,7 @@ function Home() {
                 <Card style={{ width: "18rem" }}>
                   <Card.Img variant="top" src={goals} />
                   <Card.Body>
-                    <Card.Title>Reach Your Fitness Goals</Card.Title>
+                    <Card.Title>Fitness Goals</Card.Title>
                     <Card.Text>
                       Set your desired calorie consumption per day and your
                       target weight. Effortlessly track your progress.
@@ -88,17 +88,6 @@ function Home() {
               </Col>
             </Row>
           </div>
-          {/* <Row>
-            <Col xs={6} md={6}>
-              <img src={food} thumbnail width="300" height="200" />
-              <p></p>
-            </Col>
-
-            <Col xs={6} md={6}>
-              <img src={exercise} thumbnail width="300" height="200" />
-              <p></p>
-            </Col>
-          </Row> */}
         </Container>
       </Styles>
     </Layout>
