@@ -16,11 +16,20 @@ const Styles = styled.div`
     background-color: transparent;
     max-width: 100%;
     height: auto;
+    margin-bottom: -2em;
+  }
+  .banner {
+    margin-top: 0.5em;
   }
   .feature-cards {
     display: flex;
     text-align: center;
     margin-left: 5em;
+    margin-bottom: 5em;
+  }
+  .card {
+    box-shadow: 5px 5px 6px #888888;
+    width: 18rem;
   }
 `;
 
@@ -29,7 +38,7 @@ function Home() {
     <Layout>
       <Styles>
         <Jumbotron>
-          <img src={banner} className="img-fluid shadow-4" />
+          <img src={banner} className="banner" />
           <h1 className="display-3">Fit-Forward</h1>
           <p className="lead">
             Your own personal fitness journal where you can track the foods and
@@ -47,7 +56,7 @@ function Home() {
           <div className="feature-cards">
             <Row>
               <Col>
-                <Card style={{ width: "18rem" }}>
+                <Card className="card">
                   <Card.Img variant="top" src={food} />
                   <Card.Body>
                     <Card.Title>Nutrition Tracking</Card.Title>
@@ -60,7 +69,7 @@ function Home() {
               </Col>
 
               <Col>
-                <Card style={{ width: "18rem" }}>
+                <Card className="card">
                   <Card.Img variant="top" src={exercise} />
                   <Card.Body>
                     <Card.Title>Activity Tracking</Card.Title>
@@ -74,7 +83,7 @@ function Home() {
               </Col>
 
               <Col>
-                <Card style={{ width: "18rem" }}>
+                <Card className="card">
                   <Card.Img variant="top" src={goals} />
                   <Card.Body>
                     <Card.Title>Fitness Goals</Card.Title>

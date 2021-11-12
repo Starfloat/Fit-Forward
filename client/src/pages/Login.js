@@ -11,7 +11,7 @@ import { Button } from "react-bootstrap";
 import { Col, Row } from "react-bootstrap";
 
 const Styles = styled.div`
-  margin-top: 2em;
+  margin-top: 8em;
 
   .form-group {
     text-align: center;
@@ -22,18 +22,22 @@ const Styles = styled.div`
   }
   .login-splash {
     border-radius: 30px;
+    box-shadow: 5px 5px 6px #888888;
+    object-fit: fill;
   }
 
   .form-input {
-    border-radius: 15px;
+    border-radius: 5px;
   }
 
   .card {
     padding: 1.5em 1.5em 1.5em 1.5em;
+    box-shadow: 5px 5px 6px #888888;
   }
 
   .card-login {
-    transform: translateY(70%);
+    margin-top: 13em;
+    object-position: 50% 50%;
   }
 
   Button {

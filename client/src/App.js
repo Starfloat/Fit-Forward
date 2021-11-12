@@ -1,18 +1,31 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import axios from "axios";
+import styled from "styled-components";
 
 import { AuthContext } from "./utils/AuthContext";
 import PrivateRoute from "./utils/PrivateRoute";
 
 import { Layout } from "./UI/Layout";
 import NavigationBar from "./components/NavigationBar";
+import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Registration from "./pages/Registration";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import About from "./pages/About";
+
+const AppStyled = styled.div`
+  .content-container {
+    min-height: calc(100vh - 34px);
+  }
+  .footer-pin {
+    position: relative;
+    left: 0;
+    bottom: 0;
+  }
+`;
 
 function App() {
   const [isAuth, setIsAuth] = useState({
@@ -51,20 +64,27 @@ function App() {
     <>
       <AuthContext.Provider value={{ isAuth, setIsAuth }}>
         <Router>
-          <NavigationBar />
-          <Layout>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/login" component={Login} />
-              <Route path="/register" component={Registration} />
-              <PrivateRoute
-                path="/dashboard"
-                component={Dashboard}
-                isAuth={isAuth.status}
-              />
-              <Route path="/about" component={About} />
-            </Switch>
-          </Layout>
+          <AppStyled>
+            <NavigationBar />
+            <div className="content-container">
+              <Layout>
+                <Switch>
+                  <Route exact path="/" component={Home} />
+                  <Route path="/login" component={Login} />
+                  <Route path="/register" component={Registration} />
+                  <PrivateRoute
+                    path="/dashboard"
+                    component={Dashboard}
+                    isAuth={isAuth.status}
+                  />
+                  <Route path="/about" component={About} />
+                </Switch>
+              </Layout>
+            </div>
+            <footer className="footer-pin">
+              <Footer />
+            </footer>
+          </AppStyled>
         </Router>
       </AuthContext.Provider>
     </>

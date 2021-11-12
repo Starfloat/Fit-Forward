@@ -20,9 +20,6 @@ const NavStyle = styled.div`
       color: #ff7664;
     }
   }
-  .nav-items {
-    float: right;
-  }
 
   .logo {
     margin-right: 1.5em;
@@ -44,7 +41,7 @@ const NavigationBar = () => {
   return (
     <AuthContext.Provider value={{ isAuth, setIsAuth }}>
       <NavStyle>
-        <Navbar bg="dark" expand="lg" variant="dark">
+        <Navbar bg="dark" expand="lg" variant="dark" sticky="top">
           <Layout>
             <LinkContainer to="/">
               <Navbar.Brand>
