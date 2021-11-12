@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { AuthContext } from "./utils/AuthContext";
 import PrivateRoute from "./utils/PrivateRoute";
 
+import { Layout } from "./UI/Layout";
 import NavigationBar from "./components/NavigationBar";
 import Home from "./pages/Home";
 import Registration from "./pages/Registration";
@@ -51,17 +52,19 @@ function App() {
       <AuthContext.Provider value={{ isAuth, setIsAuth }}>
         <Router>
           <NavigationBar />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Registration} />
-            <PrivateRoute
-              path="/dashboard"
-              component={Dashboard}
-              isAuth={isAuth.status}
-            />
-            <Route path="/about" component={About} />
-          </Switch>
+          <Layout>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/login" component={Login} />
+              <Route path="/register" component={Registration} />
+              <PrivateRoute
+                path="/dashboard"
+                component={Dashboard}
+                isAuth={isAuth.status}
+              />
+              <Route path="/about" component={About} />
+            </Switch>
+          </Layout>
         </Router>
       </AuthContext.Provider>
     </>

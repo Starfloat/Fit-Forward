@@ -2,14 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { Jumbotron, Button } from "react-bootstrap";
 import banner from "../assets/banner.jpg";
-import food from "../assets/food.jpg";
-import exercise from "../assets/exercise.jpg";
-import goals from "../assets/goals.jpg";
+import food from "../assets/food-card.jpg";
+import exercise from "../assets/exercise-card.jpg";
+import goals from "../assets/goals-card.jpg";
 
 import { Layout } from "../UI/Layout";
 import Container from "react-bootstrap/Container";
-import { Col, Row } from "react-bootstrap";
-import Card from "react-bootstrap/Card";
+import { Card, Col, Row } from "react-bootstrap";
 
 const Styles = styled.div`
   .jumbotron {

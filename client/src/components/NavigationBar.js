@@ -1,11 +1,10 @@
-import React, { useEffect, useContext } from "react";
-import axios from "axios";
+import React, { useContext } from "react";
 
 import { LinkContainer } from "react-router-bootstrap";
 import { useHistory } from "react-router-dom";
-
 import { AuthContext } from "../utils/AuthContext";
 
+import logo from "../assets/logo.png";
 import { Nav, Navbar, Button } from "react-bootstrap";
 import { Layout } from "../UI/Layout";
 import styled from "styled-components";
@@ -23,6 +22,12 @@ const NavStyle = styled.div`
   }
   .nav-items {
     float: right;
+  }
+
+  .logo {
+    margin-right: 1.5em;
+    width: 50px;
+    object-fit: cover;
   }
 `;
 
@@ -42,7 +47,10 @@ const NavigationBar = () => {
         <Navbar bg="dark" expand="lg" variant="dark">
           <Layout>
             <LinkContainer to="/">
-              <Navbar.Brand>Fit-Forward</Navbar.Brand>
+              <Navbar.Brand>
+                <img className="logo" src={logo} alt="logo" />
+                Fit-Forward
+              </Navbar.Brand>
             </LinkContainer>
 
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
