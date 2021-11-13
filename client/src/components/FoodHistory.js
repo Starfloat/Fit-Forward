@@ -14,8 +14,6 @@ const HistoryStyles = styled.div`
     margin-top: 1em;
   }
   text-align: center;
-  margin-left: 8em;
-  margin-right: 8em;
 `;
 
 function createData(name, calories, fat, carbs, protein) {

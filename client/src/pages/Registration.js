@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { Layout } from "../UI/Layout";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
@@ -12,11 +13,13 @@ import registration from "../assets/registration-splash.jpg";
 
 const Styles = styled.div`
   text-align: center;
-  margin-top: 8em;
+  margin-top: 2.5em;
 
   .card {
     padding: 1.5em 1.5em 1.5em 1.5em;
-    box-shadow: 5px 5px 6px #888888;
+    -moz-box-shadow: 0 0 5px #999;
+    -webkit-box-shadow: 0 0 5px #999;
+    box-shadow: 0 0 5px #999;
   }
   .form-group {
     border-radius: 10px;
@@ -75,80 +78,82 @@ function Registration() {
 
   return (
     <Styles>
-      <Card className="card">
-        <Row>
-          <Col>
-            <img className="registration-splash" src={registration}></img>
-          </Col>
-          <Col>
-            <Formik
-              initialValues={initValues}
-              onSubmit={onSubmit}
-              validationSchema={validationSchema}
-            >
-              <Form className="form-group">
-                <h1>Register</h1>
-                <p className="lead">Let's create your account</p>
+      <Layout>
+        <Card className="card">
+          <Row>
+            <Col>
+              <img className="registration-splash" src={registration}></img>
+            </Col>
+            <Col>
+              <Formik
+                initialValues={initValues}
+                onSubmit={onSubmit}
+                validationSchema={validationSchema}
+              >
+                <Form className="form-group">
+                  <h1>Register</h1>
+                  <p className="lead">Let's create your account</p>
 
-                <label>Username: </label>
-                <ErrorMessage name="username" component="span" />
-                <Field autoComplete="off" name="username" />
-                <label>Password: </label>
-                <ErrorMessage name="password" component="span" />
-                <Field type="password" autoComplete="off" name="password" />
+                  <label>Username: </label>
+                  <ErrorMessage name="username" component="span" />
+                  <Field autoComplete="off" name="username" />
+                  <label>Password: </label>
+                  <ErrorMessage name="password" component="span" />
+                  <Field type="password" autoComplete="off" name="password" />
 
-                <div id="my-radio-group">Gender</div>
-                <div role="group" aria-labelledby="my-radio-group">
-                  <label>
-                    <Field
-                      className="radio"
-                      name="gender"
-                      type="radio"
-                      value="male"
-                    />
-                    Male
-                  </label>
-                  <label>
-                    <Field
-                      className="radio"
-                      name="gender"
-                      type="radio"
-                      value="female"
-                    />
-                    Female
-                  </label>
-                </div>
+                  <div id="my-radio-group">Gender</div>
+                  <div role="group" aria-labelledby="my-radio-group">
+                    <label>
+                      <Field
+                        className="radio"
+                        name="gender"
+                        type="radio"
+                        value="male"
+                      />
+                      Male
+                    </label>
+                    <label>
+                      <Field
+                        className="radio"
+                        name="gender"
+                        type="radio"
+                        value="female"
+                      />
+                      Female
+                    </label>
+                  </div>
 
-                <label>Birthday </label>
-                <ErrorMessage name="birthday" component="span" />
-                <Field
-                  autoComplete="off"
-                  name="birthday"
-                  placeholder="YYYY-MM-DD"
-                />
+                  <label>Birthday </label>
+                  <ErrorMessage name="birthday" component="span" />
+                  <Field
+                    autoComplete="off"
+                    name="birthday"
+                    placeholder="YYYY-MM-DD"
+                  />
 
-                <label>Height (cm): </label>
-                <ErrorMessage name="height" component="span" />
-                <Field autoComplete="off" name="height" />
+                  <label>Height (cm): </label>
+                  <ErrorMessage name="height" component="span" />
+                  <Field autoComplete="off" name="height" />
 
-                <label>Weight: </label>
-                <ErrorMessage name="weight" component="span" />
-                <Field autoComplete="off" name="weight" />
+                  <label>Weight: </label>
+                  <ErrorMessage name="weight" component="span" />
+                  <Field autoComplete="off" name="weight" />
 
-                <label>Target Weight: </label>
-                <ErrorMessage name="targetWeight" component="span" />
-                <Field autoComplete="off" name="targetWeight" />
+                  <label>Target Weight: </label>
+                  <ErrorMessage name="targetWeight" component="span" />
+                  <Field autoComplete="off" name="targetWeight" />
 
-                <label>Target Calories: </label>
-                <ErrorMessage name="targetWeight" component="span" />
-                <Field autoComplete="off" name="targetCalories" />
+                  <label>Target Calories: </label>
+                  <ErrorMessage name="targetWeight" component="span" />
+                  <Field autoComplete="off" name="targetCalories" />
 
-                <Button type="submit">Register</Button>
-              </Form>
-            </Formik>
-          </Col>
-        </Row>
-      </Card>
+                  <Button type="submit">Register</Button>
+                </Form>
+              </Formik>
+            </Col>
+          </Row>
+        </Card>
+      </Layout>
     </Styles>
   );
 }

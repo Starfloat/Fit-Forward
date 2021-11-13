@@ -19,6 +19,7 @@ import About from "./pages/About";
 const AppStyled = styled.div`
   .content-container {
     min-height: calc(100vh - 34px);
+    overflow-x: hidden;
   }
   .footer-pin {
     position: relative;
@@ -56,7 +57,7 @@ function App() {
           });
         }
       });
-  }, []);
+  }, [isAuth.id]);
 
   console.log(isAuth);
 
@@ -67,19 +68,17 @@ function App() {
           <AppStyled>
             <NavigationBar />
             <div className="content-container">
-              <Layout>
-                <Switch>
-                  <Route exact path="/" component={Home} />
-                  <Route path="/login" component={Login} />
-                  <Route path="/register" component={Registration} />
-                  <PrivateRoute
-                    path="/dashboard"
-                    component={Dashboard}
-                    isAuth={isAuth.status}
-                  />
-                  <Route path="/about" component={About} />
-                </Switch>
-              </Layout>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/login" component={Login} />
+                <Route path="/register" component={Registration} />
+                <PrivateRoute
+                  path="/dashboard"
+                  component={Dashboard}
+                  isAuth={isAuth.status}
+                />
+                <Route path="/about" component={About} />
+              </Switch>
             </div>
             <footer className="footer-pin">
               <Footer />

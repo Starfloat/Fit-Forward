@@ -19,7 +19,7 @@ const Styles = styled.div`
     margin-bottom: -2em;
   }
   .banner {
-    margin-top: 0.5em;
+    margin-top: 0.1em;
   }
   .feature-cards {
     display: flex;

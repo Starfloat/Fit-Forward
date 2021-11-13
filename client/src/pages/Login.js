@@ -5,13 +5,14 @@ import { useHistory } from "react-router-dom";
 import { AuthContext } from "../utils/AuthContext";
 
 import loginsplash from "../assets/login-splash.jpg";
+import { Layout } from "../UI/Layout";
 import styled from "styled-components";
 import Card from "react-bootstrap/Card";
 import { Button } from "react-bootstrap";
 import { Col, Row } from "react-bootstrap";
 
 const Styles = styled.div`
-  margin-top: 8em;
+  margin-top: 4em;
 
   .form-group {
     text-align: center;
@@ -32,7 +33,9 @@ const Styles = styled.div`
 
   .card {
     padding: 1.5em 1.5em 1.5em 1.5em;
-    box-shadow: 5px 5px 6px #888888;
+    -moz-box-shadow: 0 0 5px #999;
+    -webkit-box-shadow: 0 0 5px #999;
+    box-shadow: 0 0 5px #999;
   }
 
   .card-login {
@@ -76,42 +79,44 @@ function Login() {
 
   return (
     <Styles>
-      <Card className="card">
-        <Row>
-          <Col>
-            <img
-              className="login-splash"
-              src={loginsplash}
-              alt="login-splash"
-            />
-          </Col>
-          <Col>
-            <Card className="card-login">
-              <div className="form-group">
-                <h2>Login</h2>
-                <label htmlFor="">User:</label>
-                <input
-                  className="form-input"
-                  type="text"
-                  onChange={(e) => {
-                    setUsername(e.target.value);
-                  }}
-                />
-                <label htmlFor="">Password: </label>
-                <input
-                  className="form-input"
-                  type="password"
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                  }}
-                />
+      <Layout>
+        <Card className="card">
+          <Row>
+            <Col>
+              <img
+                className="login-splash"
+                src={loginsplash}
+                alt="login-splash"
+              />
+            </Col>
+            <Col>
+              <Card className="card-login">
+                <div className="form-group">
+                  <h2>Login</h2>
+                  <label htmlFor="">User:</label>
+                  <input
+                    className="form-input"
+                    type="text"
+                    onChange={(e) => {
+                      setUsername(e.target.value);
+                    }}
+                  />
+                  <label htmlFor="">Password: </label>
+                  <input
+                    className="form-input"
+                    type="password"
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
+                  />
 
-                <Button onClick={login}>Login</Button>
-              </div>
-            </Card>
-          </Col>
-        </Row>
-      </Card>
+                  <Button onClick={login}>Login</Button>
+                </div>
+              </Card>
+            </Col>
+          </Row>
+        </Card>
+      </Layout>
     </Styles>
   );
 }

@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../utils/AuthContext";
 
+import { Pie } from "react-chartjs-2";
 import Grid from "@material-ui/core/Grid";
 import { FaUtensils } from "react-icons/fa";
 import { FaRunning } from "react-icons/fa";
@@ -9,9 +10,24 @@ import { DisplayStyles } from "../UI/Card.js";
 
 const NutritionDisplay = () => {
   const { isAuth } = useContext(AuthContext);
+
+  const data = {
+    labels: ["Logged Calories", "Calorie Goal"],
+    datasets: [
+      {
+        label: "",
+        data: [0, isAuth.targetCalories],
+        backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
+        borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
+        borderWidth: 1,
+      },
+    ],
+  };
+
   return (
     <>
       <DisplayStyles className="display">
+        <Pie data={data} />
         <Grid container spacing={2}>
           <Grid item sm={6}>
             <span>

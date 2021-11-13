@@ -2,14 +2,11 @@ import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
-import Button from "@material-ui/core/Button";
+import { Button } from "react-bootstrap";
 import TextField from "@material-ui/core/TextField";
 import styled from "styled-components";
 
 const Styles = styled.div`
-  h3 {
-    margin-top: 1em;
-  }
   .textField {
     margin-bottom: 15px;
   }
@@ -25,19 +22,6 @@ const Styles = styled.div`
 `;
 
 const FoodForm = () => {
-  // const [food, setFood] = useState([
-  //   {
-  //     id: null,
-  //     foodName: null,
-  //     fats: null,
-  //     carbohydrates: null,
-  //     calories: null,
-  //     servingSize: null,
-  //   },
-  // ]);
-
-  // const addFood = (name) => {};
-
   const initValues = {
     foodName: "",
     protein: "",
@@ -62,7 +46,6 @@ const FoodForm = () => {
 
   return (
     <Styles>
-      <h3>Manual Input</h3>
       <div className="AddFoodContainer">
         <Formik
           initialValues={initValues}
@@ -76,40 +59,38 @@ const FoodForm = () => {
               variant="outlined"
               placeholder="(ex...Bread)"
               label="Food Name"
-            ></TextField>
+            />
             <TextField
               className="textField"
               name="protein"
               variant="outlined"
               label="Protein"
-            ></TextField>
+            />
             <TextField
               className="textField"
               name="fat"
               variant="outlined"
               label="Fats"
-            ></TextField>
+            />
             <TextField
               className="textField"
               name="carbohydrate"
               variant="outlined"
               label="Carbohydrates"
-            ></TextField>
+            />
             <TextField
               className="textField"
               name="calories"
               variant="outlined"
               label="Calories"
-            ></TextField>
+            />
             <TextField
               className="textField"
               name="servingSize"
               variant="outlined"
               label="Serving Size"
-            ></TextField>
-            <Button color="primary" variant="contained" type="submit">
-              Submit
-            </Button>
+            />
+            <button type="submit">Submit</button>
           </Form>
         </Formik>
       </div>
