@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -35,6 +36,7 @@ const validationSchema = Yup.object().shape({
 
 const FoodForm = () => {
   const { isAuth } = useContext(AuthContext);
+  const history = useHistory();
 
   const formik = useFormik({
     initialValues: {
@@ -56,7 +58,7 @@ const FoodForm = () => {
           if (response.data.error) {
             console.log(response.data.error);
           } else {
-            alert(JSON.stringify(data, null, 2));
+            history.push("/dashboard");
           }
         });
     },
