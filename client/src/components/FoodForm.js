@@ -1,13 +1,16 @@
-import React from "react";
-import { Formik, Form } from "formik";
+import React, { useContext } from "react";
+import { useFormik } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
 
-import { Button } from "react-bootstrap";
 import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 import styled from "styled-components";
 
+import { AuthContext } from "../utils/AuthContext";
+
 const Styles = styled.div`
-  .textField {
+  .text-field {
     margin-bottom: 15px;
   }
   .form-group {
@@ -21,78 +24,130 @@ const Styles = styled.div`
   }
 `;
 
+const validationSchema = Yup.object().shape({
+  foodName: Yup.string().min(3).max(99).required(),
+  protein: Yup.number().required().positive(),
+  fat: Yup.number().required().positive(),
+  carbohydrate: Yup.number().required().positive(),
+  calories: Yup.number().required().positive(),
+  servingSize: Yup.number().required().positive().integer(),
+});
+
 const FoodForm = () => {
-  const initValues = {
-    foodName: "",
-    protein: "",
-    fat: "",
-    carbohydrate: "",
-    calories: "",
-    servingSize: "",
-  };
+  const { isAuth } = useContext(AuthContext);
 
-  const validationSchema = Yup.object().shape({
-    foodName: Yup.string().min(3).max(15).required(),
-    protein: Yup.number().required().positive(),
-    fat: Yup.number().required().positive(),
-    carbohydrate: Yup.number().required().positive(),
-    calories: Yup.number().required().positive(),
-    servingSize: Yup.number().required().positive().integer(),
+  const formik = useFormik({
+    initialValues: {
+      foodName: "",
+      protein: "",
+      fat: "",
+      carbohydrate: "",
+      calories: "",
+      servingSize: "",
+      UserId: isAuth.id,
+    },
+    validationSchema: validationSchema,
+    onSubmit: (data) => {
+      axios
+        .post("http://localhost:3001/foodintake", data, {
+          headers: { accessToken: localStorage.getItem("accessToken") },
+        })
+        .then((response) => {
+          if (response.data.error) {
+            console.log(response.data.error);
+          } else {
+            alert(JSON.stringify(data, null, 2));
+          }
+        });
+    },
   });
-
-  const onSubmit = (data) => {
-    console.log(data);
-  };
 
   return (
     <Styles>
       <div className="AddFoodContainer">
-        <Formik
-          initialValues={initValues}
-          onSubmit={onSubmit}
-          validationSchema={validationSchema}
-        >
-          <Form className="form-group">
-            <TextField
-              className="textField"
-              name="foodName"
-              variant="outlined"
-              placeholder="(ex...Bread)"
-              label="Food Name"
-            />
-            <TextField
-              className="textField"
-              name="protein"
-              variant="outlined"
-              label="Protein"
-            />
-            <TextField
-              className="textField"
-              name="fat"
-              variant="outlined"
-              label="Fats"
-            />
-            <TextField
-              className="textField"
-              name="carbohydrate"
-              variant="outlined"
-              label="Carbohydrates"
-            />
-            <TextField
-              className="textField"
-              name="calories"
-              variant="outlined"
-              label="Calories"
-            />
-            <TextField
-              className="textField"
-              name="servingSize"
-              variant="outlined"
-              label="Serving Size"
-            />
-            <button type="submit">Submit</button>
-          </Form>
-        </Formik>
+        <form onSubmit={formik.handleSubmit}>
+          <TextField
+            fullWidth
+            variant="outlined"
+            className="text-field"
+            id="foodName"
+            name="foodName"
+            label="Food"
+            value={formik.values.foodName}
+            onChange={formik.handleChange}
+            error={formik.touched.foodName && Boolean(formik.errors.foodName)}
+            helperText={formik.touched.foodName && formik.errors.foodName}
+          />
+          <TextField
+            fullWidth
+            variant="outlined"
+            className="text-field"
+            id="protein"
+            name="protein"
+            label="Protein"
+            value={formik.values.protein}
+            onChange={formik.handleChange}
+            error={formik.touched.protein && Boolean(formik.errors.protein)}
+            helperText={formik.touched.protein && formik.errors.protein}
+          />
+          <TextField
+            fullWidth
+            variant="outlined"
+            className="text-field"
+            id="fat"
+            name="fat"
+            label="Fat"
+            value={formik.values.fat}
+            onChange={formik.handleChange}
+            error={formik.touched.fat && Boolean(formik.errors.fat)}
+            helperText={formik.touched.fat && formik.errors.fat}
+          />
+          <TextField
+            fullWidth
+            variant="outlined"
+            className="text-field"
+            id="carbohydrate"
+            name="carbohydrate"
+            label="Carbohydrate"
+            value={formik.values.carbohydrate}
+            onChange={formik.handleChange}
+            error={
+              formik.touched.carbohydrate && Boolean(formik.errors.carbohydrate)
+            }
+            helperText={
+              formik.touched.carbohydrate && formik.errors.carbohydrate
+            }
+          />
+          <TextField
+            fullWidth
+            variant="outlined"
+            className="text-field"
+            id="calories"
+            name="calories"
+            label="Calories"
+            value={formik.values.calories}
+            onChange={formik.handleChange}
+            error={formik.touched.calories && Boolean(formik.errors.calories)}
+            helperText={formik.touched.calories && formik.errors.calories}
+          />
+          <TextField
+            fullWidth
+            variant="outlined"
+            className="text-field"
+            id="servingSize"
+            name="servingSize"
+            label="Seving Size"
+            value={formik.values.servingSize}
+            onChange={formik.handleChange}
+            error={
+              formik.touched.servingSize && Boolean(formik.errors.servingSize)
+            }
+            helperText={formik.touched.servingSize && formik.errors.servingSize}
+          />
+          <Button color="secondary" variant="contained" fullWidth type="submit">
+            Submit
+          </Button>
+        </form>
       </div>
     </Styles>
   );

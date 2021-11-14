@@ -7,7 +7,7 @@ import styled from "styled-components";
 import { AuthContext } from "./utils/AuthContext";
 import PrivateRoute from "./utils/PrivateRoute";
 
-import { Layout } from "./UI/Layout";
+// import { Layout } from "./UI/Layout";
 import NavigationBar from "./components/NavigationBar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";

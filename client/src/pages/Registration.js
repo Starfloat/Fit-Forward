@@ -72,8 +72,8 @@ function Registration() {
   const onSubmit = (data) => {
     axios.post("http://localhost:3001/", data).then(() => {
       console.log(data);
+      history.push("/");
     });
-    history.push("/");
   };
 
   return (

@@ -8,8 +8,8 @@ import FoodHistory from "../components/FoodHistory";
 import AddFood from "../pages/AddFood";
 import AddActivity from "./AddActivity";
 
-import { Col, Row } from "react-bootstrap";
 import { Layout } from "../UI/Layout";
+import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
 
 const DashStyled = styled.div`
@@ -39,33 +39,36 @@ const Dashboard = () => {
     <>
       <Switch>
         <DashStyled>
-          <h2>Welcome {isAuth.username}</h2>
-          <Row>
-            <Route exact path={path}>
-              <div className="card">
-                <NutritionDisplay />
-              </div>
-            </Route>
+          <Layout>
+            <h2>Welcome {isAuth.username}</h2>
+            <Row>
+              <Route exact path={path}>
+                <div className="card">
+                  <NutritionDisplay />
+                </div>
+              </Route>
 
-            <Route exact path={`${path}/addfood`}>
-              <div className="addFood">
-                <AddFood />
-              </div>
-            </Route>
-            <Route exact path={`${path}/addactivity`}>
-              <div className="addActivity">
-                <AddActivity />
-              </div>
-            </Route>
+              <Route exact path={`${path}/addfood`}>
+                <div className="addFood">
+                  <AddFood />
+                </div>
+              </Route>
+              <Route exact path={`${path}/addactivity`}>
+                <div className="addActivity">
+                  <AddActivity />
+                </div>
+              </Route>
+              <Col>
+                <Route exact path={path}>
+                  <FoodHistory />
+                </Route>
 
-            <Route exact path={path}>
-              <FoodHistory />
-            </Route>
-
-            <Route exact path={path}>
-              <ActivityHistory />
-            </Route>
-          </Row>
+                <Route exact path={path}>
+                  <ActivityHistory />
+                </Route>
+              </Col>
+            </Row>
+          </Layout>
         </DashStyled>
       </Switch>
     </>

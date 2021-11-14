@@ -2,14 +2,19 @@ const express = require("express");
 const router = express.Router();
 const { FoodIntake } = require("../models");
 
-router.get("/", (req, res) => {
-  res.send("Hello world");
+const { validateToken } = require("../middleware/Authentication");
+
+router.get("/", validateToken, async (req, res) => {
+  const listOfFoodIntake = await FoodIntake.findAll({
+    where: { UserId: req.user.id },
+  });
+  res.json({ listOfFoodIntake: listOfFoodIntake });
 });
 
-router.post("/", async (req, res) => {
-  const post = req.body;
-  await FoodIntake.create(post);
-  res.json(post);
+router.post("/", validateToken, async (req, res) => {
+  const addFood = req.body;
+  await FoodIntake.create(addFood);
+  res.json(addFood);
 });
 
 module.exports = router;
