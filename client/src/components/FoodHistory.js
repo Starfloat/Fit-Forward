@@ -1,38 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
-
-import { AuthContext } from "../utils/AuthContext";
-
-import axios from "axios";
+import React from "react";
 import MaterialTable from "material-table";
 
-const FoodHistory = () => {
-  const [foodHistoryList, setFoodHistoryList] = useState([]);
-
-  useContext(AuthContext);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:3001/foodintake", {
-        headers: { accessToken: localStorage.getItem("accessToken") },
-      })
-      .then((response) => {
-        const data = response.data;
-        console.log(data);
-        const transformed = data.foods.map((food) => {
-          return {
-            foodName: food.foodName,
-            protein: food.protein,
-            fat: food.fat,
-            carbohydrate: food.carbohydrate,
-            calories: food.calories,
-            serving: food.servingSize,
-          };
-        });
-        setFoodHistoryList(transformed);
-        console.log(transformed);
-      });
-  }, []);
-
+const FoodHistory = (props) => {
   return (
     <MaterialTable
       title="Food History"
@@ -44,7 +13,7 @@ const FoodHistory = () => {
         { title: "🔥Calories", field: "calories", type: "numeric" },
         { title: "🍽️Serving", field: "serving", type: "numeric" },
       ]}
-      data={foodHistoryList}
+      data={props.foodHistoryList}
       options={{
         exportButton: true,
       }}

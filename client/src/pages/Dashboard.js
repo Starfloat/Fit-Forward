@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
 import { withRouter, Route, Switch } from "react-router-dom";
 import { AuthContext } from "../utils/AuthContext";
 
@@ -30,15 +31,57 @@ const DashStyled = styled.div`
     -webkit-box-shadow: 0 0 5px #999;
     box-shadow: 0 0 5px #999;
   }
-  .componentBg {
-    background-size: cover;
-    background-position: "center center";
-    background-repeat: "repeat";
-  }
 `;
 
 const Dashboard = () => {
   const { isAuth } = useContext(AuthContext);
+  const [foodHistoryList, setFoodHistoryList] = useState([]);
+  const [protein, setProtein] = useState("");
+  const [fat, setFat] = useState("");
+  const [carbohydrate, setCarbohydrate] = useState("");
+  const [calories, setCalories] = useState("");
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/foodintake", {
+        headers: { accessToken: localStorage.getItem("accessToken") },
+      })
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+        const transformed = data.foods.map((food) => {
+          return {
+            foodName: food.foodName,
+            protein: food.protein,
+            fat: food.fat,
+            carbohydrate: food.carbohydrate,
+            calories: food.calories,
+            serving: food.servingSize,
+          };
+        });
+        setFoodHistoryList(transformed);
+        console.log(transformed);
+      });
+  }, []);
+
+  useEffect(() => {
+    setProtein(
+      Object.values(foodHistoryList).reduce((r, { protein }) => r + protein, 0)
+    );
+    setFat(Object.values(foodHistoryList).reduce((r, { fat }) => r + fat, 0));
+    setCarbohydrate(
+      Object.values(foodHistoryList).reduce(
+        (r, { carbohydrate }) => r + carbohydrate,
+        0
+      )
+    );
+    setCalories(
+      Object.values(foodHistoryList).reduce(
+        (r, { calories }) => r + calories,
+        0
+      )
+    );
+  }, [foodHistoryList]);
 
   const path = "/dashboard";
   return (
@@ -50,7 +93,13 @@ const Dashboard = () => {
             <Row>
               <Route exact path={path}>
                 <div className="card">
-                  <NutritionDisplay />
+                  <NutritionDisplay
+                    protein={protein}
+                    carbohydrate={carbohydrate}
+                    fat={fat}
+                    calories={calories}
+                    targetCalories={isAuth.targetCalories}
+                  />
                 </div>
               </Route>
 
@@ -66,7 +115,7 @@ const Dashboard = () => {
               </Route>
               <Col>
                 <Route exact path={path}>
-                  <FoodHistory />
+                  <FoodHistory foodHistoryList={foodHistoryList} />
                 </Route>
                 <div className="mt-3"></div>
                 <Route exact path={path}>

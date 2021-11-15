@@ -1,69 +1,18 @@
-import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
-
+import React from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../utils/AuthContext";
-
 import { Bar, Doughnut } from "react-chartjs-2";
 import Grid from "@material-ui/core/Grid";
 import { FaUtensils } from "react-icons/fa";
 import { FaRunning } from "react-icons/fa";
 import { DisplayStyles } from "../UI/Card.js";
 
-const NutritionDisplay = () => {
-  const { isAuth } = useContext(AuthContext);
-  const [foodHistoryList, setFoodHistoryList] = useState([]);
-  const [protein, setProtein] = useState("");
-  const [fat, setFat] = useState("");
-  const [carbohydrate, setCarbohydrate] = useState("");
-  const [calories, setCalories] = useState("");
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:3001/foodintake", {
-        headers: { accessToken: localStorage.getItem("accessToken") },
-      })
-      .then((response) => {
-        const data = response.data;
-        console.log(data);
-        const transformed = data.foods.map((food) => {
-          return {
-            protein: food.protein,
-            fat: food.fat,
-            carbohydrate: food.carbohydrate,
-            calories: food.calories,
-          };
-        });
-        setFoodHistoryList(transformed);
-        console.log(transformed);
-      });
-  }, []);
-
-  useEffect(() => {
-    setProtein(
-      Object.values(foodHistoryList).reduce((r, { protein }) => r + protein, 0)
-    );
-    setFat(Object.values(foodHistoryList).reduce((r, { fat }) => r + fat, 0));
-    setCarbohydrate(
-      Object.values(foodHistoryList).reduce(
-        (r, { carbohydrate }) => r + carbohydrate,
-        0
-      )
-    );
-    setCalories(
-      Object.values(foodHistoryList).reduce(
-        (r, { calories }) => r + calories,
-        0
-      )
-    );
-  }, [foodHistoryList]);
-
+const NutritionDisplay = (props) => {
   const barData = {
     labels: ["", ""],
     datasets: [
       {
         label: "# of calories",
-        data: [calories, isAuth.targetCalories],
+        data: [props.calories, props.targetCalories],
         backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
         borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
         borderWidth: 1,
@@ -76,7 +25,7 @@ const NutritionDisplay = () => {
     datasets: [
       {
         label: "",
-        data: [protein, carbohydrate, fat],
+        data: [props.protein, props.carbohydrate, props.fat],
         backgroundColor: [
           "rgba(75, 192, 192, 0.2)",
           "rgba(153, 102, 255, 0.2)",
@@ -101,7 +50,7 @@ const NutritionDisplay = () => {
             <span>
               <p>
                 Logged
-                <p className="number-small">{calories}</p> Calories
+                <p className="number-small">{props.calories}</p> Calories
               </p>
             </span>
           </Grid>
@@ -109,7 +58,7 @@ const NutritionDisplay = () => {
             <span>
               <p>
                 Your Goal
-                <p className="number-small">{isAuth.targetCalories}</p> Calories
+                <p className="number-small">{props.targetCalories}</p> Calories
               </p>
             </span>
           </Grid>
@@ -123,19 +72,19 @@ const NutritionDisplay = () => {
           <Grid item sm={4}>
             <p>
               Protein
-              <p className="number-small">{protein}</p>
+              <p className="number-small">{props.protein}</p>
             </p>
           </Grid>
           <Grid item sm={4}>
             <p>
               Carbs
-              <p className="number-small">{carbohydrate}</p>
+              <p className="number-small">{props.carbohydrate}</p>
             </p>
           </Grid>
           <Grid item sm={4}>
             <p>
               Fats
-              <p className="number-small">{fat}</p>
+              <p className="number-small">{props.fat}</p>
             </p>
           </Grid>
         </Grid>
