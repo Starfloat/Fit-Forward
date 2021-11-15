@@ -15,6 +15,7 @@ import styled from "styled-components";
 const DashStyled = styled.div`
   margin-left: 1.5em;
   margin-right: 1.5em;
+
   .addFood {
     display: flex;
   }
@@ -29,6 +30,11 @@ const DashStyled = styled.div`
     -webkit-box-shadow: 0 0 5px #999;
     box-shadow: 0 0 5px #999;
   }
+  .componentBg {
+    background-size: cover;
+    background-position: "center center";
+    background-repeat: "repeat";
+  }
 `;
 
 const Dashboard = () => {
@@ -40,7 +46,7 @@ const Dashboard = () => {
       <Switch>
         <DashStyled>
           <Layout>
-            <h2>Welcome {isAuth.username}</h2>
+            <h2 className="mt-3">Welcome {isAuth.username}</h2>
             <Row>
               <Route exact path={path}>
                 <div className="card">
@@ -62,10 +68,11 @@ const Dashboard = () => {
                 <Route exact path={path}>
                   <FoodHistory />
                 </Route>
-
+                <div className="mt-3"></div>
                 <Route exact path={path}>
                   <ActivityHistory />
                 </Route>
+                <div className="mt-3"></div>
               </Col>
             </Row>
           </Layout>

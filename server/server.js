@@ -16,6 +16,8 @@ const usersRouter = require("./routes/Users");
 app.use("/", usersRouter);
 const foodIntakeRouter = require("./routes/FoodIntake");
 app.use("/foodintake", foodIntakeRouter);
+const activityRouter = require("./routes/Activity");
+app.use("/addactivity", activityRouter);
 
 db.sequelize.sync().then(() => {
   app.listen(3001, () => {

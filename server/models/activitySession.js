@@ -1,20 +1,24 @@
 module.exports = (sequelize, DataTypes) => {
-  const activitySession = sequelize.define("activitySession", {
-    activity_id: {
+  const activitySession = sequelize.define("ActivitySession", {
+    compendium_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
     activityName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    minutedPerformed: {
+    minutesPerformed: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    mets: {
+      type: DataTypes.FLOAT,
+      allowNull: true,
+    },
     caloriesBurned: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
   });
 

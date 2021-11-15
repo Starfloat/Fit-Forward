@@ -1,19 +1,46 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../utils/AuthContext";
+import axios from "axios";
+import MaterialTable from "material-table";
 
-const HistoryStyles = styled.div`
-  h3 {
-    margin-top: 1em;
-  }
-  text-align: center;
-`;
+const FoodHistory = () => {
+  const [activityHistoryList, setActivityHistoryList] = useState([]);
+  useContext(AuthContext);
 
-const ActivityHistory = () => {
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/addactivity", {
+        headers: { accessToken: localStorage.getItem("accessToken") },
+      })
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+        const transformed = data.activities.map((activity) => {
+          return {
+            activityName: activity.activityName,
+            minutesPerformed: activity.minutesPerformed,
+            caloriesBurned: activity.caloriesBurned,
+          };
+        });
+        setActivityHistoryList(transformed);
+        console.log(transformed);
+      });
+  }, []);
+
   return (
-    <HistoryStyles>
-      <h3>Activity History</h3>
-    </HistoryStyles>
+    <MaterialTable
+      title="Activity History"
+      columns={[
+        { title: "🏋️", field: "activityName" },
+        { title: "⏲️ Minutes", field: "minutesPerformed", type: "numeric" },
+        { title: "Calories 🔥", field: "caloresBurned", type: "numeric" },
+      ]}
+      data={activityHistoryList}
+      options={{
+        exportButton: true,
+      }}
+    />
   );
 };
 
-export default ActivityHistory;
+export default FoodHistory;

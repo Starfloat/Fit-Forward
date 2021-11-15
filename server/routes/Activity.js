@@ -1,20 +1,20 @@
 const express = require("express");
 const router = express.Router();
-const { FoodIntake } = require("../models");
+const { ActivitySession } = require("../models");
 
 const { validateToken } = require("../middleware/Authentication");
 
 router.get("/", validateToken, async (req, res) => {
-  const listOfFoodIntake = await FoodIntake.findAll({
+  const activityList = await ActivitySession.findAll({
     where: { UserId: req.user.id },
   });
-  res.json({ foods: listOfFoodIntake });
+  res.json({ activities: activityList });
 });
 
 router.post("/", validateToken, async (req, res) => {
-  const addFood = req.body;
-  await FoodIntake.create(addFood);
-  res.json(addFood);
+  const addActivity = req.body;
+  await ActivitySession.create(addActivity);
+  res.json(addActivity);
 });
 
 module.exports = router;

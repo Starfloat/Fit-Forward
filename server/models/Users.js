@@ -38,6 +38,10 @@ module.exports = (sequelize, DataTypes) => {
     Users.hasMany(models.FoodIntake, {
       onDelete: "cascade",
     });
+
+    Users.hasMany(models.ActivitySession, {
+      onDelete: "cascade",
+    });
   };
 
   return Users;

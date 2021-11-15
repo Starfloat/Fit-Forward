@@ -21,7 +21,6 @@ export const DisplayStyles = styled(CardStyles)`
   .number {
     font-weight: 800;
     font-size: clamp(2rem, 4vw, 40px);
-    color: var(--dark-purple);
   }
   p {
     margin: 0;
