@@ -35,14 +35,18 @@ const DashStyled = styled.div`
 
 const Dashboard = () => {
   const { isAuth } = useContext(AuthContext);
+
   const [foodHistoryList, setFoodHistoryList] = useState([]);
+  const [activityHistoryList, setActivityHistoryList] = useState([]);
+
   const [protein, setProtein] = useState("");
   const [fat, setFat] = useState("");
   const [carbohydrate, setCarbohydrate] = useState("");
   const [calories, setCalories] = useState("");
 
-  useEffect(() => {
-    axios
+  //mapping for foodhistory
+  useEffect(async () => {
+    await axios
       .get("http://localhost:3001/foodintake", {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
@@ -64,6 +68,28 @@ const Dashboard = () => {
       });
   }, []);
 
+  //mapping for activityhistory
+  useEffect(async () => {
+    await axios
+      .get("http://localhost:3001/addactivity", {
+        headers: { accessToken: localStorage.getItem("accessToken") },
+      })
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+        const transformed = data.activities.map((activity) => {
+          return {
+            activityName: activity.activityName,
+            minutesPerformed: activity.minutesPerformed,
+            caloriesBurned: activity.caloriesBurned,
+          };
+        });
+        setActivityHistoryList(transformed);
+        console.log(transformed);
+      });
+  }, []);
+
+  // macronutrients sum
   useEffect(() => {
     setProtein(
       Object.values(foodHistoryList).reduce((r, { protein }) => r + protein, 0)
@@ -119,7 +145,7 @@ const Dashboard = () => {
                 </Route>
                 <div className="mt-3"></div>
                 <Route exact path={path}>
-                  <ActivityHistory />
+                  <ActivityHistory activityHistoryList={activityHistoryList} />
                 </Route>
                 <div className="mt-3"></div>
               </Col>
