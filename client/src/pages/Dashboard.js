@@ -35,79 +35,8 @@ const DashStyled = styled.div`
 
 const Dashboard = () => {
   const { isAuth } = useContext(AuthContext);
-
   const [foodHistoryList, setFoodHistoryList] = useState([]);
   const [activityHistoryList, setActivityHistoryList] = useState([]);
-
-  const [protein, setProtein] = useState("");
-  const [fat, setFat] = useState("");
-  const [carbohydrate, setCarbohydrate] = useState("");
-  const [calories, setCalories] = useState("");
-
-  //mapping for foodhistory
-  useEffect(async () => {
-    await axios
-      .get("http://localhost:3001/foodintake", {
-        headers: { accessToken: localStorage.getItem("accessToken") },
-      })
-      .then((response) => {
-        const data = response.data;
-        console.log(data);
-        const transformed = data.foods.map((food) => {
-          return {
-            foodName: food.foodName,
-            protein: food.protein,
-            fat: food.fat,
-            carbohydrate: food.carbohydrate,
-            calories: food.calories,
-            serving: food.servingSize,
-          };
-        });
-        setFoodHistoryList(transformed);
-        console.log(transformed);
-      });
-  }, []);
-
-  //mapping for activityhistory
-  useEffect(async () => {
-    await axios
-      .get("http://localhost:3001/addactivity", {
-        headers: { accessToken: localStorage.getItem("accessToken") },
-      })
-      .then((response) => {
-        const data = response.data;
-        console.log(data);
-        const transformed = data.activities.map((activity) => {
-          return {
-            activityName: activity.activityName,
-            minutesPerformed: activity.minutesPerformed,
-            caloriesBurned: activity.caloriesBurned,
-          };
-        });
-        setActivityHistoryList(transformed);
-        console.log(transformed);
-      });
-  }, []);
-
-  // macronutrients sum
-  useEffect(() => {
-    setProtein(
-      Object.values(foodHistoryList).reduce((r, { protein }) => r + protein, 0)
-    );
-    setFat(Object.values(foodHistoryList).reduce((r, { fat }) => r + fat, 0));
-    setCarbohydrate(
-      Object.values(foodHistoryList).reduce(
-        (r, { carbohydrate }) => r + carbohydrate,
-        0
-      )
-    );
-    setCalories(
-      Object.values(foodHistoryList).reduce(
-        (r, { calories }) => r + calories,
-        0
-      )
-    );
-  }, [foodHistoryList]);
 
   const path = "/dashboard";
   return (
@@ -120,10 +49,8 @@ const Dashboard = () => {
               <Route exact path={path}>
                 <div className="card">
                   <NutritionDisplay
-                    protein={protein}
-                    carbohydrate={carbohydrate}
-                    fat={fat}
-                    calories={calories}
+                    foodHistoryList={foodHistoryList}
+                    activityHistoryList={activityHistoryList}
                     targetCalories={isAuth.targetCalories}
                   />
                 </div>
@@ -141,11 +68,17 @@ const Dashboard = () => {
               </Route>
               <Col>
                 <Route exact path={path}>
-                  <FoodHistory foodHistoryList={foodHistoryList} />
+                  <FoodHistory
+                    foodHistoryList={foodHistoryList}
+                    setFoodHistoryList={setFoodHistoryList}
+                  />
                 </Route>
                 <div className="mt-3"></div>
                 <Route exact path={path}>
-                  <ActivityHistory activityHistoryList={activityHistoryList} />
+                  <ActivityHistory
+                    activityHistoryList={activityHistoryList}
+                    setActivityHistoryList={setActivityHistoryList}
+                  />
                 </Route>
                 <div className="mt-3"></div>
               </Col>

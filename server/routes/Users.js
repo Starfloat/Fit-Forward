@@ -34,7 +34,7 @@ router.post("/", async (req, res) => {
 
 // logic for login
 router.post("/login", async (req, res) => {
-  const { username, password, targetCalories } = req.body;
+  const { username, password, height, weight, targetCalories } = req.body;
   const user = await Users.findOne({ where: { username: username } });
 
   if (!user) res.json({ error: "User not found" });
@@ -48,6 +48,8 @@ router.post("/login", async (req, res) => {
       {
         username: user.username,
         id: user.id,
+        height: user.height,
+        weight: user.weight,
         targetCalories: user.targetCalories,
       },
       "3X2xOjbneC"
@@ -57,6 +59,8 @@ router.post("/login", async (req, res) => {
       token: accessToken,
       id: user.id,
       username: username,
+      height: height,
+      weight: weight,
       targetCalories: targetCalories,
     });
   });

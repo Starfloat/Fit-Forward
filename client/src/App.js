@@ -31,6 +31,9 @@ const AppStyled = styled.div`
 function App() {
   const [isAuth, setIsAuth] = useState({
     username: "",
+    height: "",
+    weight: "",
+    targetWeight: "",
     targetCalories: "",
     id: 0,
     status: false,
@@ -52,6 +55,7 @@ function App() {
           setIsAuth({
             username: response.data.username,
             id: response.data.id,
+            weight: response.data.weight,
             targetCalories: response.data.targetCalories,
             status: true,
           });

@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
     },
     caloriesBurned: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
       allowNull: true,
     },
   });
