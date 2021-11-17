@@ -6,6 +6,7 @@ import { FaUserCircle } from "react-icons/fa";
 const UserHeaderStyled = styled.div`
   margin-top: 1.5em;
   text-align: center;
+  margin-right: 60%;
 `;
 
 const UserHeader = (props) => {
@@ -13,9 +14,9 @@ const UserHeader = (props) => {
     <UserHeaderStyled>
       <Card>
         <Card.Body>
-          <h2 className="mt-3">
+          <h3 className="mt-2">
             <FaUserCircle /> Welcome {props.user}
-          </h2>
+          </h3>
         </Card.Body>
       </Card>
     </UserHeaderStyled>
