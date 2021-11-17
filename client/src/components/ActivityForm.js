@@ -1,10 +1,9 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { useFormik } from "formik";
-import * as Yup from "yup";
 import axios from "axios";
 
-import Form from "react-bootstrap/Form";
+import Card from "react-bootstrap/Card";
+
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import styled from "styled-components";
@@ -12,6 +11,7 @@ import styled from "styled-components";
 import { AuthContext } from "../utils/AuthContext";
 
 const Styles = styled.div`
+  margin-top: 1.5em;
   .text-field {
     margin-bottom: 15px;
   }
@@ -61,76 +61,51 @@ const ActivityForm = () => {
 
   return (
     <Styles>
-      <TextField
-        fullWidth
-        className="text-field"
-        id="activity"
-        label="Activity"
-        variant="outlined"
-        onChange={(event) => {
-          setActivity(event.target.value);
-        }}
-      />
-      <TextField
-        fullWidth
-        className="text-field"
-        id="minutes"
-        label="Minutes"
-        variant="outlined"
-        value={minutes}
-        onChange={(event) => {
-          setMinutes(event.target.value);
-        }}
-      />
-      <TextField
-        fullWidth
-        className="text-field"
-        id="mets"
-        label="METs"
-        variant="outlined"
-        value={mets}
-        onChange={(event) => {
-          setMets(event.target.value);
-        }}
-      />
-
-      {/* <input
-        type="text"
-        placeholder="Activity"
-        autoComplete="off"
-        value={activity}
-        onChange={(event) => {
-          setActivity(event.target.value);
-        }}
-      />
-      <input
-        type="text"
-        placeholder="Minutes"
-        autoComplete="off"
-        value={minutes}
-        onChange={(event) => {
-          setMinutes(event.target.value);
-        }}
-      />
-      <input
-        type="text"
-        placeholder="METs"
-        autoComplete="off"
-        value={mets}
-        onChange={(event) => {
-          setMets(event.target.value);
-        }}
-      /> */}
-      <Button
-        color="secondary"
-        variant="contained"
-        fullWidth
-        type="submit"
-        onClick={addActivity}
-      >
-        {" "}
-        Submit
-      </Button>
+      <Card>
+        <Card.Body>
+          <TextField
+            fullWidth
+            className="text-field"
+            id="activity"
+            label="Activity"
+            variant="outlined"
+            onChange={(event) => {
+              setActivity(event.target.value);
+            }}
+          />
+          <TextField
+            fullWidth
+            className="text-field"
+            id="minutes"
+            label="Minutes"
+            variant="outlined"
+            value={minutes}
+            onChange={(event) => {
+              setMinutes(event.target.value);
+            }}
+          />
+          <TextField
+            fullWidth
+            className="text-field"
+            id="mets"
+            label="METs"
+            variant="outlined"
+            value={mets}
+            onChange={(event) => {
+              setMets(event.target.value);
+            }}
+          />
+          <Button
+            color="secondary"
+            variant="contained"
+            fullWidth
+            type="submit"
+            onClick={addActivity}
+          >
+            Submit
+          </Button>
+        </Card.Body>
+      </Card>
     </Styles>
   );
 };

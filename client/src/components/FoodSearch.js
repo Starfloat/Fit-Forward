@@ -4,21 +4,20 @@ import FoodSearchResults from "./FoodSearchResults";
 import Debounce from "../utils/Debounce";
 import styled from "styled-components";
 import Spinner from "react-bootstrap/Spinner";
+import Card from "react-bootstrap/Card";
 
 const FoodSearchStyled = styled.div`
+  margin-top: 1.5em;
   h3 {
     margin-top: 1em;
   }
   .foodSearch .control input {
     font-size: 1.6rem;
     padding: 15px 10px;
-    width: 90%;
+    width: 100%;
     max-width: 600px;
     margin: 25px 0;
     border: 1px solid lightgray;
-  }
-  .container {
-    margin-left: 1em;
   }
 `;
 
@@ -87,19 +86,23 @@ const SearchFood = () => {
   }
   return (
     <FoodSearchStyled>
-      <section className="foodSearch">
-        <div className="container">
-          <h3>Search Database</h3>
-          <div className="control">
-            <input
-              type="search"
-              placeholder="Search food..."
-              onChange={(e) => setQuery(e.target.value)}
-            />
-          </div>
-          {display}
-        </div>
-      </section>
+      <Card>
+        <Card.Body>
+          <section className="foodSearch">
+            <div className="container">
+              <h3>Search Database</h3>
+              <div className="control">
+                <input
+                  type="search"
+                  placeholder="Search food..."
+                  onChange={(e) => setQuery(e.target.value)}
+                />
+              </div>
+              {display}
+            </div>
+          </section>
+        </Card.Body>
+      </Card>
     </FoodSearchStyled>
   );
 };

@@ -40,12 +40,12 @@ const Summary = (props) => {
         <Card.Body>
           <h1>
             <span className="consumed-calories">
-              {consumedCalories}
+              🍛{consumedCalories}
               <span className="consumed-text">Calories from food</span>
             </span>
             <FaMinus />
             <span className="burned-calories">
-              {burnedCalories}
+              🔥{burnedCalories}
               <span className="consumed-text">Calories from exercise</span>
             </span>
             <FaEquals />
