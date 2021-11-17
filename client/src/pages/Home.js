@@ -13,12 +13,18 @@ import { Card, Col, Row } from "react-bootstrap";
 import Image from "react-bootstrap/Image";
 
 const Styles = styled.div`
+  h1 {
+    /* color: white; */
+  }
   .jumbotron {
+    /* color: white; */
     text-align: center;
     background-color: transparent;
     max-width: 100%;
     height: auto;
     padding-bottom: 0em;
+    margin-left: 25%;
+    margin-right: 25%;
   }
   .banner {
   }
