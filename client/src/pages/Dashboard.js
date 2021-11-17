@@ -1,22 +1,20 @@
-import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
+import React, { useState, useContext } from "react";
 import { withRouter, Route, Switch } from "react-router-dom";
 import { AuthContext } from "../utils/AuthContext";
 
+import UserHeader from "../components/UserHeader";
 import NutritionDisplay from "../components/NutritionDisplay";
 import ActivityHistory from "../components/ActivityHistory";
 import FoodHistory from "../components/FoodHistory";
 import AddFood from "../pages/AddFood";
-import AddActivity from "./AddActivity";
+import AddActivity from "../pages/AddActivity";
+import Summary from "../components/Summary";
 
 import { Layout } from "../UI/Layout";
 import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
 
 const DashStyled = styled.div`
-  margin-left: 1.5em;
-  margin-right: 1.5em;
-
   .addFood {
     display: flex;
   }
@@ -44,7 +42,9 @@ const Dashboard = () => {
       <Switch>
         <DashStyled>
           <Layout>
-            <h2 className="mt-3">Welcome {isAuth.username}</h2>
+            <Route exact path={path}>
+              <UserHeader user={isAuth.username} />
+            </Route>
             <Row>
               <Route exact path={path}>
                 <div className="card">
@@ -82,6 +82,15 @@ const Dashboard = () => {
                 </Route>
                 <div className="mt-3"></div>
               </Col>
+              <Route exact path={path}>
+                <Col>
+                  <Summary
+                    foodHistoryList={foodHistoryList}
+                    activityHistoryList={activityHistoryList}
+                    targetCalories={isAuth.targetCalories}
+                  />
+                </Col>
+              </Route>
             </Row>
           </Layout>
         </DashStyled>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ActivitySearchResults from "../components/ActivitySearchResults";
+import Spinner from "react-bootstrap/Spinner";
 
 import styled from "styled-components";
 
@@ -79,7 +80,11 @@ const SearchActivity = () => {
   let display = <p>No activities found</p>;
 
   if (isSearching) {
-    display = <p>searching...</p>;
+    display = (
+      <h1>
+        <Spinner animation="border" variant="primary" />
+      </h1>
+    );
   } else if (error) {
     display = <p>{error}</p>;
   } else if (searchResult.length > 0) {

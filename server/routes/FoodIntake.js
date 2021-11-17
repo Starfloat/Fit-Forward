@@ -17,4 +17,14 @@ router.post("/", validateToken, async (req, res) => {
   res.json(addFood);
 });
 
+router.delete("/", validateToken, async (req, res) => {
+  const foodIntakeId = req.foodIntakeId;
+  await FoodIntake.destroy({
+    where: {
+      id: foodIntakeId,
+    },
+  });
+  res.json("Delete successful");
+});
+
 module.exports = router;

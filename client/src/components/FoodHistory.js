@@ -26,6 +26,14 @@ const FoodHistory = (props) => {
       });
   }, []);
 
+  const deleteFood = () => {
+    axios
+      .delete("http://localhost:3001/foodintake", {
+        headers: { accessToken: localStorage.getItem("accessToken") },
+      })
+      .then(() => alert("delete success"));
+  };
+
   return (
     <MaterialTable
       title="Food History"
@@ -40,6 +48,7 @@ const FoodHistory = (props) => {
       data={props.foodHistoryList}
       options={{
         exportButton: true,
+        selection: false,
       }}
     />
   );

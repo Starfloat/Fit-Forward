@@ -3,6 +3,7 @@ import axios from "axios";
 import FoodSearchResults from "./FoodSearchResults";
 import Debounce from "../utils/Debounce";
 import styled from "styled-components";
+import Spinner from "react-bootstrap/Spinner";
 
 const FoodSearchStyled = styled.div`
   h3 {
@@ -78,7 +79,7 @@ const SearchFood = () => {
   let display = <p>Found no food.</p>;
 
   if (isLoading) {
-    display = <p>loading...</p>;
+    display = <Spinner animation="border" variant="primary" />;
   } else if (error) {
     display = <p>{error}</p>;
   } else if (foodResults.length > 0) {

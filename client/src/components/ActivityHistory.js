@@ -34,6 +34,7 @@ const FoodHistory = (props) => {
       data={props.activityHistoryList}
       options={{
         exportButton: true,
+        selection: false,
       }}
     />
   );
