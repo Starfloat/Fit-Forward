@@ -8,12 +8,13 @@ import styled from "styled-components";
 import Card from "react-bootstrap/Card";
 import { Button } from "react-bootstrap";
 import { Col, Row } from "react-bootstrap";
+import Image from "react-bootstrap/Image";
 
 import registration from "../assets/registration-splash.jpg";
 
 const Styles = styled.div`
   text-align: center;
-  margin-top: 2.5em;
+  margin-top: 1.5em;
 
   .card {
     padding: 1.5em 1.5em 1.5em 1.5em;
@@ -82,7 +83,11 @@ function Registration() {
         <Card className="card">
           <Row>
             <Col>
-              <img className="registration-splash" src={registration}></img>
+              <Image
+                fluid
+                className="registration-splash"
+                src={registration}
+              ></Image>
             </Col>
             <Col>
               <Formik
