@@ -4,5 +4,7 @@
 
 #### Getting Started
 
-run `npm install` in both the client and server directory to download the necessary dependencies and node packages.
+Run `npm install` in both the client and server directory to download the necessary dependencies and node packages.
+Run `npm start` in both the client and server directory to start the client and server.
+
 Serve up a localhost SQL server with an empty password to connect to a localhost database.
