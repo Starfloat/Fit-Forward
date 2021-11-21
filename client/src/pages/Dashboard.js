@@ -1,4 +1,6 @@
 import React, { useState, useContext } from "react";
+import { useCapture } from "react-capture";
+
 import { withRouter, Route, Switch } from "react-router-dom";
 import { AuthContext } from "../utils/AuthContext";
 

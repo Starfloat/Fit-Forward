@@ -23,10 +23,9 @@ const Styles = styled.div`
     max-width: 100%;
     height: auto;
     padding-bottom: 0em;
-    margin-left: 25%;
-    margin-right: 25%;
   }
-  .banner {
+  .waves-1 {
+    object-fit: fill;
   }
   .feature-cards {
     background-color: #a7d7c9;
@@ -58,7 +57,7 @@ function Home() {
           <Button color="primary">Sign up</Button>
         </p>
       </Jumbotron>
-      <Image src={wavesNegative}></Image>
+      <Image className="waves-1" src={wavesNegative}></Image>
       <Container fluid>
         <div className="feature-cards">
           <Row>

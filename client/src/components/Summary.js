@@ -34,6 +34,16 @@ const Summary = (props) => {
 
   const totalCalories = consumedCalories - burnedCalories;
 
+  const getAdvice =
+    totalCalories >= props.targetCalories ? (
+      <p class="lead"> Goal Reached! Be careful to not overconsume!</p>
+    ) : (
+      <p class="text-danger">
+        You should consume {props.targetCalories - totalCalories}
+        <span className="consumed-text">KCal</span> more!
+      </p>
+    );
+
   return (
     <SummaryStyled>
       <Card>
@@ -54,7 +64,9 @@ const Summary = (props) => {
               <span className="consumed-text">Calories</span>
             </span>
           </h1>
-          <h2 class="text-success">Your Goal: {props.targetCalories}</h2>
+          <h2 class="text-success">
+            Your Goal: {props.targetCalories} {getAdvice}
+          </h2>
         </Card.Body>
       </Card>
     </SummaryStyled>
