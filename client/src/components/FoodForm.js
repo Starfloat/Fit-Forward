@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
+import Card from "react-bootstrap/Card";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import styled from "styled-components";
@@ -11,6 +12,7 @@ import styled from "styled-components";
 import { AuthContext } from "../utils/AuthContext";
 
 const Styles = styled.div`
+  margin-top: 1.5em;
   .text-field {
     margin-bottom: 15px;
   }
@@ -66,91 +68,108 @@ const FoodForm = () => {
 
   return (
     <Styles>
-      <div className="AddFoodContainer">
-        <form onSubmit={formik.handleSubmit}>
-          <TextField
-            fullWidth
-            variant="outlined"
-            className="text-field"
-            id="foodName"
-            name="foodName"
-            label="Food"
-            value={formik.values.foodName}
-            onChange={formik.handleChange}
-            error={formik.touched.foodName && Boolean(formik.errors.foodName)}
-            helperText={formik.touched.foodName && formik.errors.foodName}
-          />
-          <TextField
-            fullWidth
-            variant="outlined"
-            className="text-field"
-            id="protein"
-            name="protein"
-            label="Protein"
-            value={formik.values.protein}
-            onChange={formik.handleChange}
-            error={formik.touched.protein && Boolean(formik.errors.protein)}
-            helperText={formik.touched.protein && formik.errors.protein}
-          />
-          <TextField
-            fullWidth
-            variant="outlined"
-            className="text-field"
-            id="fat"
-            name="fat"
-            label="Fat"
-            value={formik.values.fat}
-            onChange={formik.handleChange}
-            error={formik.touched.fat && Boolean(formik.errors.fat)}
-            helperText={formik.touched.fat && formik.errors.fat}
-          />
-          <TextField
-            fullWidth
-            variant="outlined"
-            className="text-field"
-            id="carbohydrate"
-            name="carbohydrate"
-            label="Carbohydrate"
-            value={formik.values.carbohydrate}
-            onChange={formik.handleChange}
-            error={
-              formik.touched.carbohydrate && Boolean(formik.errors.carbohydrate)
-            }
-            helperText={
-              formik.touched.carbohydrate && formik.errors.carbohydrate
-            }
-          />
-          <TextField
-            fullWidth
-            variant="outlined"
-            className="text-field"
-            id="calories"
-            name="calories"
-            label="Calories"
-            value={formik.values.calories}
-            onChange={formik.handleChange}
-            error={formik.touched.calories && Boolean(formik.errors.calories)}
-            helperText={formik.touched.calories && formik.errors.calories}
-          />
-          <TextField
-            fullWidth
-            variant="outlined"
-            className="text-field"
-            id="servingSize"
-            name="servingSize"
-            label="Seving Size"
-            value={formik.values.servingSize}
-            onChange={formik.handleChange}
-            error={
-              formik.touched.servingSize && Boolean(formik.errors.servingSize)
-            }
-            helperText={formik.touched.servingSize && formik.errors.servingSize}
-          />
-          <Button color="secondary" variant="contained" fullWidth type="submit">
-            Submit
-          </Button>
-        </form>
-      </div>
+      <Card>
+        <Card.Body>
+          <div className="AddFoodContainer">
+            <form onSubmit={formik.handleSubmit}>
+              <TextField
+                fullWidth
+                variant="outlined"
+                className="text-field"
+                id="foodName"
+                name="foodName"
+                label="Food"
+                value={formik.values.foodName}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.foodName && Boolean(formik.errors.foodName)
+                }
+                helperText={formik.touched.foodName && formik.errors.foodName}
+              />
+              <TextField
+                fullWidth
+                variant="outlined"
+                className="text-field"
+                id="protein"
+                name="protein"
+                label="Protein"
+                value={formik.values.protein}
+                onChange={formik.handleChange}
+                error={formik.touched.protein && Boolean(formik.errors.protein)}
+                helperText={formik.touched.protein && formik.errors.protein}
+              />
+              <TextField
+                fullWidth
+                variant="outlined"
+                className="text-field"
+                id="fat"
+                name="fat"
+                label="Fat"
+                value={formik.values.fat}
+                onChange={formik.handleChange}
+                error={formik.touched.fat && Boolean(formik.errors.fat)}
+                helperText={formik.touched.fat && formik.errors.fat}
+              />
+              <TextField
+                fullWidth
+                variant="outlined"
+                className="text-field"
+                id="carbohydrate"
+                name="carbohydrate"
+                label="Carbohydrate"
+                value={formik.values.carbohydrate}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.carbohydrate &&
+                  Boolean(formik.errors.carbohydrate)
+                }
+                helperText={
+                  formik.touched.carbohydrate && formik.errors.carbohydrate
+                }
+              />
+              <TextField
+                fullWidth
+                variant="outlined"
+                className="text-field"
+                id="calories"
+                name="calories"
+                label="Calories"
+                value={formik.values.calories}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.calories && Boolean(formik.errors.calories)
+                }
+                helperText={formik.touched.calories && formik.errors.calories}
+              />
+              <TextField
+                fullWidth
+                variant="outlined"
+                className="text-field"
+                id="servingSize"
+                name="servingSize"
+                label="Seving Size"
+                value={formik.values.servingSize}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.servingSize &&
+                  Boolean(formik.errors.servingSize)
+                }
+                helperText={
+                  formik.touched.servingSize && formik.errors.servingSize
+                }
+              />
+              <Button
+                color="secondary"
+                variant="contained"
+                fullWidth
+                type="submit"
+              >
+                Submit
+              </Button>
+            </form>
+          </div>
+        </Card.Body>
+      </Card>
     </Styles>
   );
 };

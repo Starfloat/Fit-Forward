@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { useFormik } from "formik";
-import * as Yup from "yup";
 import axios from "axios";
+
+import Card from "react-bootstrap/Card";
 
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -11,6 +11,7 @@ import styled from "styled-components";
 import { AuthContext } from "../utils/AuthContext";
 
 const Styles = styled.div`
+  margin-top: 1.5em;
   .text-field {
     margin-bottom: 15px;
   }
@@ -25,93 +26,86 @@ const Styles = styled.div`
   }
 `;
 
-const validationSchema = Yup.object().shape({
-  activityName: Yup.string().min(3).max(30).required(),
-  minutesPerformed: Yup.number().required().positive(),
-  mets: Yup.number().positive(),
-});
-
 const ActivityForm = () => {
   const { isAuth } = useContext(AuthContext);
+  const [activity, setActivity] = useState("");
+  const [minutes, setMinutes] = useState("");
+  const [mets, setMets] = useState("");
   const history = useHistory();
 
-  const formik = useFormik({
-    initialValues: {
-      activityName: "",
-      minutesPerformed: "",
-      mets: 0,
-      UserId: isAuth.id,
-    },
-    validationSchema: validationSchema,
-    onSubmit: (data) => {
-      axios
-        .post("http://localhost:3001/addactivity", data, {
+  const addActivity = () => {
+    axios
+      .post(
+        "http://localhost:3001/addactivity",
+        {
+          activityName: activity,
+          minutesPerformed: minutes,
+          mets: mets,
+          caloriesBurned: Math.round(
+            ((mets * 3.5 * isAuth.weight) / 200) * minutes
+          ),
+          UserId: isAuth.id,
+        },
+        {
           headers: { accessToken: localStorage.getItem("accessToken") },
-        })
-        .then((response) => {
-          if (response.data.error) {
-            alert(response.data.error);
-          } else {
-            history.push("/dashboard");
-          }
-        });
-    },
-  });
+        }
+      )
+      .then((response) => {
+        if (response.data.error) {
+          alert(response.data.error);
+        } else {
+          history.push("/dashboard");
+        }
+      });
+  };
 
   return (
     <Styles>
-      <div className="AddFoodContainer">
-        <form onSubmit={formik.handleSubmit}>
+      <Card>
+        <Card.Body>
           <TextField
             fullWidth
-            variant="outlined"
             className="text-field"
-            id="activityName"
-            name="activityName"
+            id="activity"
             label="Activity"
-            value={formik.values.activityName}
-            onChange={formik.handleChange}
-            error={
-              formik.touched.activityName && Boolean(formik.errors.activityName)
-            }
-            helperText={
-              formik.touched.activityName && formik.errors.activityName
-            }
+            variant="outlined"
+            onChange={(event) => {
+              setActivity(event.target.value);
+            }}
           />
           <TextField
             fullWidth
-            variant="outlined"
             className="text-field"
-            id="minutesPerformed"
-            name="minutesPerformed"
+            id="minutes"
             label="Minutes"
-            value={formik.values.minutesPerformed}
-            onChange={formik.handleChange}
-            error={
-              formik.touched.minutesPerformed &&
-              Boolean(formik.errors.minutesPerformed)
-            }
-            helperText={
-              formik.touched.minutesPerformed && formik.errors.minutesPerformed
-            }
+            variant="outlined"
+            value={minutes}
+            onChange={(event) => {
+              setMinutes(event.target.value);
+            }}
           />
           <TextField
             fullWidth
-            variant="outlined"
             className="text-field"
             id="mets"
-            name="mets"
             label="METs"
-            value={formik.values.mets}
-            onChange={formik.handleChange}
-            error={formik.touched.mets && Boolean(formik.errors.mets)}
-            helperText={formik.touched.mets && formik.errors.mets}
+            variant="outlined"
+            value={mets}
+            onChange={(event) => {
+              setMets(event.target.value);
+            }}
           />
-          <Button color="secondary" variant="contained" fullWidth type="submit">
+          <Button
+            color="secondary"
+            variant="contained"
+            fullWidth
+            type="submit"
+            onClick={addActivity}
+          >
             Submit
           </Button>
-        </form>
-      </div>
+        </Card.Body>
+      </Card>
     </Styles>
   );
 };

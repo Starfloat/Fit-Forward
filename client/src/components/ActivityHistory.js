@@ -1,14 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
-import { AuthContext } from "../utils/AuthContext";
+import React, { useEffect } from "react";
 import axios from "axios";
 import MaterialTable from "material-table";
 
-const FoodHistory = () => {
-  const [activityHistoryList, setActivityHistoryList] = useState([]);
-  useContext(AuthContext);
-
-  useEffect(() => {
-    axios
+const FoodHistory = (props) => {
+  useEffect(async () => {
+    await axios
       .get("http://localhost:3001/addactivity", {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
@@ -22,7 +18,7 @@ const FoodHistory = () => {
             caloriesBurned: activity.caloriesBurned,
           };
         });
-        setActivityHistoryList(transformed);
+        props.setActivityHistoryList(transformed);
         console.log(transformed);
       });
   }, []);
@@ -33,11 +29,12 @@ const FoodHistory = () => {
       columns={[
         { title: "🏋️", field: "activityName" },
         { title: "⏲️ Minutes", field: "minutesPerformed", type: "numeric" },
-        { title: "Calories 🔥", field: "caloresBurned", type: "numeric" },
+        { title: "Calories 🔥", field: "caloriesBurned", type: "numeric" },
       ]}
-      data={activityHistoryList}
+      data={props.activityHistoryList}
       options={{
         exportButton: true,
+        selection: false,
       }}
     />
   );

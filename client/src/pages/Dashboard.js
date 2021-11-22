@@ -1,21 +1,22 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
+import { useCapture } from "react-capture";
+
 import { withRouter, Route, Switch } from "react-router-dom";
 import { AuthContext } from "../utils/AuthContext";
 
+import UserHeader from "../components/UserHeader";
 import NutritionDisplay from "../components/NutritionDisplay";
 import ActivityHistory from "../components/ActivityHistory";
 import FoodHistory from "../components/FoodHistory";
 import AddFood from "../pages/AddFood";
-import AddActivity from "./AddActivity";
+import AddActivity from "../pages/AddActivity";
+import Summary from "../components/Summary";
 
 import { Layout } from "../UI/Layout";
 import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
 
 const DashStyled = styled.div`
-  margin-left: 1.5em;
-  margin-right: 1.5em;
-
   .addFood {
     display: flex;
   }
@@ -30,15 +31,12 @@ const DashStyled = styled.div`
     -webkit-box-shadow: 0 0 5px #999;
     box-shadow: 0 0 5px #999;
   }
-  .componentBg {
-    background-size: cover;
-    background-position: "center center";
-    background-repeat: "repeat";
-  }
 `;
 
 const Dashboard = () => {
   const { isAuth } = useContext(AuthContext);
+  const [foodHistoryList, setFoodHistoryList] = useState([]);
+  const [activityHistoryList, setActivityHistoryList] = useState([]);
 
   const path = "/dashboard";
   return (
@@ -46,11 +44,17 @@ const Dashboard = () => {
       <Switch>
         <DashStyled>
           <Layout>
-            <h2 className="mt-3">Welcome {isAuth.username}</h2>
+            <Route exact path={path}>
+              <UserHeader user={isAuth.username} />
+            </Route>
             <Row>
               <Route exact path={path}>
                 <div className="card">
-                  <NutritionDisplay />
+                  <NutritionDisplay
+                    foodHistoryList={foodHistoryList}
+                    activityHistoryList={activityHistoryList}
+                    targetCalories={isAuth.targetCalories}
+                  />
                 </div>
               </Route>
 
@@ -66,14 +70,29 @@ const Dashboard = () => {
               </Route>
               <Col>
                 <Route exact path={path}>
-                  <FoodHistory />
+                  <FoodHistory
+                    foodHistoryList={foodHistoryList}
+                    setFoodHistoryList={setFoodHistoryList}
+                  />
                 </Route>
                 <div className="mt-3"></div>
                 <Route exact path={path}>
-                  <ActivityHistory />
+                  <ActivityHistory
+                    activityHistoryList={activityHistoryList}
+                    setActivityHistoryList={setActivityHistoryList}
+                  />
                 </Route>
                 <div className="mt-3"></div>
               </Col>
+              <Route exact path={path}>
+                <Col>
+                  <Summary
+                    foodHistoryList={foodHistoryList}
+                    activityHistoryList={activityHistoryList}
+                    targetCalories={isAuth.targetCalories}
+                  />
+                </Col>
+              </Route>
             </Row>
           </Layout>
         </DashStyled>

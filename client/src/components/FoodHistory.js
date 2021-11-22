@@ -1,17 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
-
-import { AuthContext } from "../utils/AuthContext";
-
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import MaterialTable from "material-table";
 
-const FoodHistory = () => {
-  const [foodHistoryList, setFoodHistoryList] = useState([]);
-
-  useContext(AuthContext);
-
-  useEffect(() => {
-    axios
+const FoodHistory = (props) => {
+  useEffect(async () => {
+    await axios
       .get("http://localhost:3001/foodintake", {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
@@ -28,10 +21,18 @@ const FoodHistory = () => {
             serving: food.servingSize,
           };
         });
-        setFoodHistoryList(transformed);
+        props.setFoodHistoryList(transformed);
         console.log(transformed);
       });
   }, []);
+
+  // const deleteFood = () => {
+  //   axios
+  //     .delete("http://localhost:3001/foodintake", {
+  //       headers: { accessToken: localStorage.getItem("accessToken") },
+  //     })
+  //     .then(() => alert("delete success"));
+  // };
 
   return (
     <MaterialTable
@@ -44,9 +45,10 @@ const FoodHistory = () => {
         { title: "🔥Calories", field: "calories", type: "numeric" },
         { title: "🍽️Serving", field: "serving", type: "numeric" },
       ]}
-      data={foodHistoryList}
+      data={props.foodHistoryList}
       options={{
         exportButton: true,
+        selection: false,
       }}
     />
   );
