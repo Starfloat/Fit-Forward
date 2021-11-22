@@ -66,6 +66,13 @@ router.post("/login", async (req, res) => {
   });
 });
 
+router.get("/profile", validateToken, async (req, res) => {
+  const userProfile = await Users.findByPk(id, {
+    attributes: { exclude: ["password"] },
+  });
+  res.json(userProfile);
+});
+
 // checks if user is authenticated
 router.get("/auth", validateToken, (req, res) => {
   res.json(req.user);

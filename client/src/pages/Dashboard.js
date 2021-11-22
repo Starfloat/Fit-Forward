@@ -1,10 +1,11 @@
 import React, { useState, useContext } from "react";
-import { useCapture } from "react-capture";
 
 import { withRouter, Route, Switch } from "react-router-dom";
 import { AuthContext } from "../utils/AuthContext";
+import ScrollToTop from "../utils/ScrollToTop";
 
 import UserHeader from "../components/UserHeader";
+import Profile from "./Profile";
 import NutritionDisplay from "../components/NutritionDisplay";
 import ActivityHistory from "../components/ActivityHistory";
 import FoodHistory from "../components/FoodHistory";
@@ -17,6 +18,9 @@ import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
 
 const DashStyled = styled.div`
+  a:hover {
+    text-decoration: none;
+  }
   .addFood {
     display: flex;
   }
@@ -43,14 +47,19 @@ const Dashboard = () => {
     <>
       <Switch>
         <DashStyled>
+          <ScrollToTop />
           <Layout>
             <Route exact path={path}>
               <UserHeader user={isAuth.username} />
+            </Route>
+            <Route exact path={`${path}/profile`}>
+              <Profile />
             </Route>
             <Row>
               <Route exact path={path}>
                 <div className="card">
                   <NutritionDisplay
+                    user={isAuth.username}
                     foodHistoryList={foodHistoryList}
                     activityHistoryList={activityHistoryList}
                     targetCalories={isAuth.targetCalories}
