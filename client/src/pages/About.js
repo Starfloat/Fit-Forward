@@ -2,6 +2,9 @@ import React from "react";
 import { Layout } from "../UI/Layout";
 import styled from "styled-components";
 import { Jumbotron } from "react-bootstrap";
+import Charts from "../assets/Charts.jpg";
+import Data from "../assets/Data.png";
+import Money from "../assets/Money.png";
 import foodintake from "../assets/foodintake.JPG";
 import activity from "../assets/activity.JPG";
 import dashboard from "../assets/Dashboard.JPG";
@@ -53,12 +56,24 @@ ul {
 
 }
 .feature-cards {
-  text-align: center;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    padding-bottom: 5em;
+    
+    
 }
 
+.jumbotron {
+  text-align: center;
+  max-width: 100%;
+  height: auto;
+  padding-bottom: 0em;
+
 .card {
-  box-shadow: 5px 5px 30px #888888;
-  width: 60rem;
+  box-shadow: 5px 5px 6px #888888;
+  width: 20rem;
+  height: 30rem;
  
 }
 
@@ -69,8 +84,7 @@ const About = () => {
     <Layout>
       <Styles>
         <Jumbotron>
-        
-          <h1 className="text-2">Fit-Forward Description</h1>
+          <h1 className="text-2">Fit-Forward Product Description</h1>
           <p className = "description">
           Our application is a tool that provides the user a 
           digital diary which helps you keep track of your physical health and diet. You will have an easier 
@@ -85,61 +99,54 @@ const About = () => {
               <li> Make a positive change in spending habits.</li>
             </ul>
           
-            <Container fluid>
+          <Container fluid>
           <div className="feature-cards">
             <Row>
               <Col>
                 <Card className="card">
-                  <Card.Img variant="top" src={foodintake} />
+                  <Card.Img variant="top" src={Charts} />
                   <Card.Body>
-                    <Card.Title>Food Search</Card.Title>
+                    <Card.Title>Visual Charts</Card.Title>
                     <Card.Text>
-                      A simple interface that allows the user to select the food so that it 
-                      records it in their account so they can keep track of their food input. 
+                      The results will be calculated and will be generated into a simple visual report that will 
+                      help our customers understand their process. 
                     </Card.Text>
                   </Card.Body>
                 </Card>
               </Col>
             </Row>
-
-          <p></p>
+       
             <Row>
-
               <Col>
                 <Card className="card">
-                  <Card.Img variant="top" src={activity} />
+                  <Card.Img variant="top" src={Data} />
                   <Card.Body>
                     <Card.Title>Activity Search</Card.Title>
                     <Card.Text>
-                      You can easily search activites from our list provided by the source of the 
-                      "Compendium Physical Activites" that gives you a clear description to list 
-                      that you can select and record your activities. 
+                      Putting in your food data has never been simplier. You only have to put in your  
+                      food and fitness, and fit-forward does the rest. Our goals is make your experance resourceful.
                     </Card.Text>
                   </Card.Body>
                 </Card>
               </Col>
             </Row>
-          <p></p>
+       
             <Row>
               <Col>
                 <Card className="card">
-                  <Card.Img variant="top" src={dashboard} />
+                  <Card.Img variant="top" src={Money} />
                   <Card.Body>
-                    <Card.Title>Dashboard</Card.Title>
+                    <Card.Title>Price</Card.Title>
                     <Card.Text>
-                      All your recorded data from food input and activities will generate a simple 
-                      dashboard giving you a clear idea on where you stand on your health goals.
+                     You can never put a price on health. That is why our product is offered with no of charge. Being healthy 
+                     and fit isn't a fad or a trend. It is a lifestyle. 
                     </Card.Text>
                   </Card.Body>
                 </Card>
               </Col>
             </Row>
-
-
-
           </div>
         </Container>
-
         </Jumbotron>
 
 
