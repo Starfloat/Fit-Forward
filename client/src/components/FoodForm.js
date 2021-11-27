@@ -12,7 +12,6 @@ import styled from "styled-components";
 import { AuthContext } from "../utils/AuthContext";
 
 const Styles = styled.div`
-  margin-top: 1.5em;
   .text-field {
     margin-bottom: 15px;
   }

@@ -15,6 +15,7 @@ import Registration from "./pages/Registration";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 const AppStyled = styled.div`
   .content-container {
@@ -82,6 +83,7 @@ function App() {
                   isAuth={isAuth.status}
                 />
                 <Route path="/about" component={About} />
+                <Route path="/contact" component={Contact}/>
               </Switch>
             </div>
             <footer className="footer-pin">
