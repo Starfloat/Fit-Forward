@@ -75,6 +75,64 @@ background-image :
 }
 
 
+.input[type=text], select, textarea {
+    width: 50%;
+    padding: 12px;
+    border: 3px solid #ccc;
+    border-radius: 20px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    resize: vertical;
+    margin-left :450px;
+    float: right;
+
+  }
+
+.container1 {
+    text-align:center;
+    float: right;
+    margin-left : 450px;
+    
+}
+
+.FirstName {
+    margin-left: 260px;
+}
+
+.LastName {
+    margin-left: 260px;
+}
+
+.Email {
+    margin-left: 270px;
+}
+
+
+ label {
+    padding: 20px 20px 20px 0;
+    display: inline-block;
+  }
+
+.title1 {
+    margin-left: 330px;
+}
+
+.email {
+    white-space:nowrap;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 350px;
+ 
+ 
+}
+
 }`;
 
 const Contact = () => {
@@ -100,8 +158,40 @@ const Contact = () => {
                             </div>
                         </div>
                 </Jumbotron>
+
+                <div className="container1">
+                    <form>
+                    <div className ="FirstName">
+                        <label for="fname">First Name </label>
+                        <input type="text" id="fname" name="firstname" placeholder="Your name.."></input>
+                     </div>
+
+                      <div className ="LastName">
+                        <label for="lname">Last Name</label>
+                        <input type="text" id="lname" name="lastname" placeholder="Your last name.."></input>
+                      </div>
+
+                      <div className ="Email">
+                        <label for="lname"> Email</label>
+                        <input type="text" id="Email"  placeholder="Enter your Email"></input>
+                      </div>
+
+
+                    <div className = "title1">
+                        <label for="subject">Subject</label>
+                    </div>
+                        <textarea id="subject" name="subject" placeholder="Write something.."></textarea>
+
+                        <input type="submit" value="Submit"/>
+                     
+                    </form>
+                </div>
+         
             </Styles>
         </Layout>
+
+
+
     
        
     );

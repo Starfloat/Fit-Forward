@@ -88,13 +88,13 @@ const About = () => {
           <p className = "description">
           Our application is a tool that provides the user a 
           digital diary which helps you keep track of your physical health and diet. You will have an easier 
-          time to be engaged in healthy eating habits and daily exercise routines
+          time to be engaged in healthy eating habits and daily exercise routines.
           </p>
           <p className = "goals">Goals</p>
             <ul>
-              <li>Make an impact on impact for a  long-term life fulfillment by helping reach your health goals.</li>
-              <li>Motivate our customers  to put in the effort in time in maintaining and reaching their health goals.</li>
-              <li>Produce reports which are easy for the user to understand so they are kept in track 
+              <li>Make an impact on impact for a  long-term life fulfillment by helping them reach your health goals.</li>
+              <li>Motivate our customers to put in the effort of maintaining and reaching their health goals.</li>
+              <li>Produce reports which are easy to understand so they are kept in track 
                 of their fitness goals.</li>
               <li> Make a positive change in spending habits.</li>
             </ul>
@@ -123,8 +123,8 @@ const About = () => {
                   <Card.Body>
                     <Card.Title>Activity Search</Card.Title>
                     <Card.Text>
-                      Putting in your food data has never been simplier. You only have to put in your  
-                      food and fitness, and fit-forward does the rest. Our goals is make your experance resourceful.
+                      Converting your food into data and recording them has never been simplier. You only have to put in your  
+                      activities, and fit-forward does the rest. 
                     </Card.Text>
                   </Card.Body>
                 </Card>
@@ -138,7 +138,7 @@ const About = () => {
                   <Card.Body>
                     <Card.Title>Price</Card.Title>
                     <Card.Text>
-                     You can never put a price on health. That is why our product is offered with no of charge. Being healthy 
+                     You can never put a price on health. That is why our product is offered free of charge. Being healthy 
                      and fit isn't a fad or a trend. It is a lifestyle. 
                     </Card.Text>
                   </Card.Body>
