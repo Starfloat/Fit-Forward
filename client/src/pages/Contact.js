@@ -52,12 +52,12 @@ background-image :
     font-size:20px;
 }
 
-.Mail {
+.Mail-1 {
     height: 50px;
     width: 50px;
 }
 
-.Email {
+.Email-2 {
     display: inline-block;
     margin-left: 30px; 
     font-size:20px;
@@ -149,8 +149,8 @@ const Contact = () => {
                                 <p className = "Phonenumber">213-432-3232</p>
                             </div>
                             <div className = "Contact-1">
-                                <Image fluid src={Mail} className = "Mail"/>
-                                <p className = "Email">fitforward@southernct.edu</p>
+                                <Image fluid src={Mail} className = "Mail-1"/>
+                                <p className = "Email-2">fitforward@southernct.edu</p>
                             </div>
                             <div className = "Contact-2">
                                 <Image fluid src={Location} className = "Location"/>
