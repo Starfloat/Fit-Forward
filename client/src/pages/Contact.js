@@ -10,17 +10,7 @@ import Maps from "../assets/Maps.JPG"
 
 const Styles = styled.div`
 
-background-image :
 
-}
-.jumbotron {
-  /* color: white; */
-  text-align: center;
-  background-color: transparent;
-  max-width: 100%;
-  height: auto;
-  padding-bottom: 0em;
-}
 .text-3 {
     text-align: center;
     max-width: 100%;
@@ -36,10 +26,9 @@ background-image :
   }
 
  .Contact-Description {
-
-     margin-top: 6em;
     text-align : center;
-    line-height: 5;
+    line-height: 4;
+    
  }
 .Phone {
     height: 50px;
@@ -76,37 +65,21 @@ background-image :
 
 
 .input[type=text], select, textarea {
-    width: 50%;
+    width: 70%;
     padding: 12px;
     border: 3px solid #ccc;
     border-radius: 20px;
     box-sizing: border-box;
     margin-bottom: 16px;
     resize: vertical;
-    margin-left :450px;
-    float: right;
-
+    margin-left :80px;
   }
 
 .container1 {
     text-align:center;
     float: right;
-    margin-left : 450px;
-    
+    margin-left : 40px;    
 }
-
-.FirstName {
-    margin-left: 260px;
-}
-
-.LastName {
-    margin-left: 260px;
-}
-
-.Email {
-    margin-left: 270px;
-}
-
 
  label {
     padding: 20px 20px 20px 0;
@@ -114,11 +87,7 @@ background-image :
   }
 
 .title1 {
-    margin-left: 330px;
-}
-
-.email {
-    white-space:nowrap;
+    margin-left: 50px;
 }
 
 input[type=submit] {
@@ -128,9 +97,14 @@ input[type=submit] {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-left: 350px;
+  margin-left: 90px;
  
- 
+}
+
+.grid-container {
+   display: grid;
+   grid-template-columns 1fr 1fr;
+
 }
 
 }`;
@@ -139,26 +113,28 @@ const Contact = () => {
     return (
         <Layout>
             <Styles>
-                <Jumbotron>
-                        <h1 className = "text-3">Contact Us</h1>
-                        <p className = "description ">If you have any questions please free to 
-                        contact us.</p>
-                        <div className = "Contact-Description">
-                            <div className = "Contact">
-                                <Image fluid src={Phone} className ="Phone"/>
-                                <p className = "Phonenumber">213-432-3232</p>
-                            </div>
-                            <div className = "Contact-1">
-                                <Image fluid src={Mail} className = "Mail-1"/>
-                                <p className = "Email-2">fitforward@southernct.edu</p>
-                            </div>
-                            <div className = "Contact-2">
-                                <Image fluid src={Location} className = "Location"/>
-                                <p className = "Address">501 Crescent St, New Haven, CT 06515, United States</p>
-                            </div>
-                        </div>
-                </Jumbotron>
 
+   
+            <h1 className = "text-3">Contact Us</h1>
+            <p className = "description ">If you have any questions please free to 
+            contact us.</p>
+            
+            <div className = "grid-container">
+                    <div className = "Contact-Description">
+                        <div className = "Contact">
+                            <Image fluid src={Phone} className ="Phone"/>
+                            <p className = "Phonenumber">213-432-3232</p>
+                        </div>
+                         <div className = "Contact-1">
+                            <Image fluid src={Mail} className = "Mail-1"/>
+                            <p className = "Email-2">fitforward@southernct.edu</p>
+                        </div>
+                        <div className = "Contact-2">
+                            <Image fluid src={Location} className = "Location"/>
+                            <p className = "Address">501 Crescent St, New Haven, CT 06515, United States</p>
+                        </div>
+                    </div>
+         
                 <div className="container1">
                     <form>
                     <div className ="FirstName">
@@ -175,18 +151,18 @@ const Contact = () => {
                         <label for="lname"> Email</label>
                         <input type="text" id="Email"  placeholder="Enter your Email"></input>
                       </div>
-
-
+                      
                     <div className = "title1">
                         <label for="subject">Subject</label>
                     </div>
                         <textarea id="subject" name="subject" placeholder="Write something.."></textarea>
-
                         <input type="submit" value="Submit"/>
                      
                     </form>
                 </div>
-         
+    
+             
+            </div>
             </Styles>
         </Layout>
 
