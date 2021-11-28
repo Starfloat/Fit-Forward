@@ -102,10 +102,10 @@ input[type=submit] {
 
 .grid-container {
    display: grid;
-   grid-template-columns 1fr 1fr;
+   grid-template-columns: 1fr 1fr;
 }
 
-}
+
 `;
 
 const Contact = () => {
@@ -113,13 +113,12 @@ const Contact = () => {
         <Layout>
             <Styles>
 
-   
             <h1 className = "text-3">Contact Us</h1>
             <p className = "description ">If you have any questions please free to 
             contact us.</p>
             
             <div className = "grid-container">
-                    <div className = "Contact-Description">
+                    <div className = "container1">
                         <div className = "Contact">
                             <Image fluid src={Phone} className ="Phone"/>
                             <p className = "Phonenumber">213-432-3232</p>
