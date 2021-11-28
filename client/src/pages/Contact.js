@@ -63,7 +63,6 @@ const Styles = styled.div`
     font-size:20px;
 }
 
-
 .input[type=text], select, textarea {
     width: 70%;
     padding: 12px;
@@ -73,7 +72,7 @@ const Styles = styled.div`
     margin-bottom: 16px;
     resize: vertical;
     margin-left :80px;
-  }
+}
 
 .container1 {
     text-align:center;
@@ -84,7 +83,7 @@ const Styles = styled.div`
  label {
     padding: 20px 20px 20px 0;
     display: inline-block;
-  }
+}
 
 .title1 {
     margin-left: 50px;
@@ -104,10 +103,10 @@ input[type=submit] {
 .grid-container {
    display: grid;
    grid-template-columns 1fr 1fr;
-
 }
 
-}`;
+}
+`;
 
 const Contact = () => {
     return (
@@ -157,7 +156,6 @@ const Contact = () => {
                     </div>
                         <textarea id="subject" name="subject" placeholder="Write something.."></textarea>
                         <input type="submit" value="Submit"/>
-                     
                     </form>
                 </div>
     
@@ -165,13 +163,8 @@ const Contact = () => {
             </div>
             </Styles>
         </Layout>
-
-
-
-    
        
     );
-
 };
 
 

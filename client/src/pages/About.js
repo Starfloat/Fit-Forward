@@ -38,7 +38,7 @@ const Styles = styled.div`
   background-color: transparent;
   max-width: 100%;
   height: auto;
-  font-size : 20px;
+  font-size : 30px;
 }
 
 .list {
@@ -46,22 +46,20 @@ const Styles = styled.div`
   background-color: transparent;
   max-width: 100%;
   height: auto;
-  font-size : 20px;
 }
 
 ul {
   list-style: none;
   text-align: center;
+  font-size: 20px;
 }
 
-}
+
 .feature-cards {
     display: flex;
     text-align: center;
     justify-content: center;
     padding-bottom: 5em;
-    
-    
 }
 
 .jumbotron {
@@ -86,16 +84,14 @@ const About = () => {
         <Jumbotron>
           <h1 className="text-2">Fit-Forward Product Description</h1>
           <p className = "description">
-          Our application is a tool that provides the user a 
-          digital diary which helps you keep track of your physical health and diet. You will have an easier 
-          time to be engaged in healthy eating habits and daily exercise routines.
+          Our application is a tool that provides you a digital diary of your physical health and diet. 
+          You will have an easier time to be engaged in healthy eating habits and daily exercise routines.
           </p>
-          <p className = "goals">Goals</p>
+          <h2 className = "goals">Goals</h2>
             <ul>
-              <li>Make an impact on impact for a  long-term life fulfillment by helping them reach your health goals.</li>
-              <li>Motivate our customers to put in the effort of maintaining and reaching their health goals.</li>
-              <li>Produce reports which are easy to understand so they are kept in track 
-                of their fitness goals.</li>
+              <li>Make an impact for a long-term life fulfillment by helping them reach their health goals.</li>
+              <li>Produce reports which are easy to understand so they are kept in track of their fitness goals.</li>
+              <li> Motivate users to put in the effort in time in maintaining and reaching their health goals. </li>
               <li> Make a positive change in spending habits.</li>
             </ul>
           
@@ -108,8 +104,8 @@ const About = () => {
                   <Card.Body>
                     <Card.Title>Visual Charts</Card.Title>
                     <Card.Text>
-                      The results will be calculated and will be generated into a simple visual report that will 
-                      help our customers understand their process. 
+                      The results will be calculated and generated into a simple visual report that will 
+                      track your process. 
                     </Card.Text>
                   </Card.Body>
                 </Card>
@@ -139,7 +135,7 @@ const About = () => {
                     <Card.Title>Price</Card.Title>
                     <Card.Text>
                      You can never put a price on health. That is why our product is offered free of charge. Being healthy 
-                     and fit isn't a fad or a trend. It is a lifestyle. 
+                     and fit isn't a fad or a trend, it is a lifestyle. 
                     </Card.Text>
                   </Card.Body>
                 </Card>
