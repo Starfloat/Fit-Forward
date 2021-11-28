@@ -64,12 +64,14 @@ ul {
   max-width: 100%;
   height: auto;
   padding-bottom: 0em;
+}
 
 .card {
   box-shadow: 5px 5px 6px #888888;
   width: 20rem;
   height: 30rem;
 }
+
 `;
 
 const About = () => {
