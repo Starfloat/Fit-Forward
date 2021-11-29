@@ -16,6 +16,7 @@ router.post("/", async (req, res) => {
     weight,
     targetWeight,
     targetCalories,
+    activityLevel,
   } = req.body;
   bcrpyt.hash(password, 10).then((hash) => {
     Users.create({
@@ -27,6 +28,7 @@ router.post("/", async (req, res) => {
       weight: weight,
       targetWeight: targetWeight,
       targetCalories: targetCalories,
+      activityLevel: activityLevel,
     });
     res.json("SUCCESS");
   });
