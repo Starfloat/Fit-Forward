@@ -1,6 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Card from "react-bootstrap/Card";
 import { FaUserCircle } from "react-icons/fa";
 
 const UserHeaderStyled = styled.div`
@@ -14,7 +14,9 @@ const UserHeader = (props) => {
   return (
     <UserHeaderStyled>
       <h3 className="mt-2">
-        <FaUserCircle /> Welcome {props.user}
+        <Link to={`dashboard/profile`}>
+          <FaUserCircle /> Welcome {props.user}
+        </Link>
       </h3>
     </UserHeaderStyled>
   );

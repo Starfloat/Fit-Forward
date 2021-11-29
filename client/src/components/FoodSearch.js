@@ -7,7 +7,6 @@ import Spinner from "react-bootstrap/Spinner";
 import Card from "react-bootstrap/Card";
 
 const FoodSearchStyled = styled.div`
-  margin-top: 1.5em;
   h3 {
     margin-top: 1em;
   }

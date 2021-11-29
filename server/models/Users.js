@@ -32,6 +32,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
+    activityLevel: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
   });
 
   Users.associate = (models) => {

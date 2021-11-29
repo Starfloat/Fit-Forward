@@ -16,6 +16,7 @@ router.post("/", async (req, res) => {
     weight,
     targetWeight,
     targetCalories,
+    activityLevel,
   } = req.body;
   bcrpyt.hash(password, 10).then((hash) => {
     Users.create({
@@ -27,6 +28,7 @@ router.post("/", async (req, res) => {
       weight: weight,
       targetWeight: targetWeight,
       targetCalories: targetCalories,
+      activityLevel: activityLevel,
     });
     res.json("SUCCESS");
   });
@@ -64,6 +66,14 @@ router.post("/login", async (req, res) => {
       targetCalories: targetCalories,
     });
   });
+});
+
+router.get("/profile/", validateToken, async (req, res) => {
+  const id = req.user.id;
+  const userProfile = await Users.findByPk(id, {
+    attributes: { exclude: ["password"] },
+  });
+  res.json(userProfile);
 });
 
 // checks if user is authenticated

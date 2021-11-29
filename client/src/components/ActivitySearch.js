@@ -7,7 +7,6 @@ import Spinner from "react-bootstrap/Spinner";
 import styled from "styled-components";
 
 const ActivitySearchStyled = styled.div`
-  margin-top: 1.5em;
   h3 {
     margin-top: 1em;
   }

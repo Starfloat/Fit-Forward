@@ -5,14 +5,19 @@ import { Jumbotron } from "react-bootstrap";
 import Charts from "../assets/Charts.jpg";
 import Data from "../assets/Data.png";
 import Money from "../assets/Money.png";
-import foodintake from "../assets/foodintake.JPG";
-import activity from "../assets/activity.JPG";
-import dashboard from "../assets/Dashboard.JPG";
 
 import Container from "react-bootstrap/Container";
 import { Card, Col, Row } from "react-bootstrap";
 
 const Styles = styled.div`
+  .text-2 {
+    text-align: center;
+    background-color: transparent;
+    max-width: 100%;
+    height: auto;
+    font-size: 70px;
+  }
+
 
 }
 
@@ -56,10 +61,43 @@ ul {
 
 
 .feature-cards {
+
+  .description {
+    text-align: center;
+    background-color: transparent;
+    max-width: 100%;
+    height: auto;
+    font-size: 20px;
+  }
+
+  .goals {
+    text-align: center;
+    background-color: transparent;
+    max-width: 100%;
+    height: auto;
+    font-size: 20px;
+  }
+
+  .list {
+    text-align: center;
+    background-color: transparent;
+    max-width: 100%;
+    height: auto;
+    font-size: 20px;
+  }
+
+  ul {
+    list-style: none;
+    text-align: center;
+  }
+
+  .feature-cards {
+
     display: flex;
     text-align: center;
     justify-content: center;
     padding-bottom: 5em;
+
 }
 
 .jumbotron {
@@ -75,6 +113,21 @@ ul {
  
 }
 
+  }
+
+
+  .jumbotron {
+    text-align: center;
+    max-width: 100%;
+    height: auto;
+    padding-bottom: 0em;
+  }
+
+  .card {
+    box-shadow: 5px 5px 6px #888888;
+    width: 20rem;
+    height: 30rem;
+  }
 `;
 
 const About = () => {
@@ -144,9 +197,6 @@ const About = () => {
           </div>
         </Container>
         </Jumbotron>
-
-
-        
       </Styles>
     </Layout>
   );
