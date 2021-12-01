@@ -1,110 +1,152 @@
 import React from "react";
-import styled from "styled-components";
-import { Jumbotron, Button } from "react-bootstrap";
-import banner from "../assets/banner.jpg";
-import food from "../assets/food-card.jpg";
-import exercise from "../assets/exercise-card.jpg";
-import goals from "../assets/goals-card.jpg";
-import wavesNegative from "../assets/wavesNegative.svg";
+import Hero from "../components/Hero";
 
-import { Layout } from "../UI/Layout";
-import Container from "react-bootstrap/Container";
-import { Card, Col, Row } from "react-bootstrap";
 import Image from "react-bootstrap/Image";
+import Button from "react-bootstrap/Button";
+import { Col, Row } from "react-bootstrap";
+import styled from "styled-components";
 
-const Styles = styled.div`
-  h1 {
-    /* color: white; */
-  }
-  .jumbotron {
-    /* color: white; */
+import waves from "../assets/waves.svg";
+import wavesNegative from "../assets/wavesNegative.svg";
+import fooddatabase from "../assets/food-database.png";
+import activity from "../assets/activity.png";
+import meal from "../assets/meal.png";
+import target from "../assets/target.png";
+import goal from "../assets/goal.png";
+
+const HomeStyled = styled.div`
+  .center-info {
     text-align: center;
-    background-color: transparent;
-    max-width: 100%;
-    height: auto;
-    padding-bottom: 0em;
+    justify-content: center;
+    font-size: 24px;
+    padding-top: 0.4em;
+    padding-bottom: 0.4em;
   }
-  .waves-1 {
-    object-fit: fill;
-  }
-  .feature-cards {
-    background-color: #a7d7c9;
+  .info1 {
     display: flex;
+    flex-direction: row;
+    padding-top: 5em;
+    padding-bottom: 5em;
+    justify-content: center;
+    background-color: #fafbfb;
+  }
+  .info2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: right;
+    background-color: #daeee8;
+  }
+  .info3 {
+    background-color: #fafbfb;
     text-align: center;
     justify-content: center;
     padding-bottom: 5em;
   }
-  .card {
-    box-shadow: 5px 5px 6px #888888;
-    width: 18rem;
+  .food-database {
+    object-fit: fill;
+    width: 100%;
+    height: 100%;
+  }
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  .waves-1 {
+    background-color: #fafbfb;
+  }
+  .waves-2 {
+    background-color: #fafbfb;
   }
 `;
 
-function Home() {
+const Home = () => {
   return (
-    <Styles>
-      <Jumbotron>
-        <Image fluid src={banner} className="banner" />
-        <h1 className="display-3">Fit-Forward</h1>
-        <p className="lead">
-          Your own personal fitness journal where you can track the foods and
-          macronutrients you eat and the calories you burn from various
-          activities.
-        </p>
-        <hr className="my-2" />
-        <p>The best inventment you can ever make is your own health.</p>
-        <p className="lead">
-          <Button color="primary">Sign up</Button>
-        </p>
-      </Jumbotron>
-      <Image className="waves-1" src={wavesNegative}></Image>
-      <Container fluid>
-        <div className="feature-cards">
+    <>
+      <Hero />
+      <HomeStyled>
+        <section className="center-info">
+          <p>
+            Your own personal fitness journal where you can track the foods
+            <br /> you eat and the calories you burn from various activities.
+          </p>
+        </section>
+
+        <section className="info1">
+          <div className="info1-left">
+            <h2 className="display-4">Food Database</h2>
+            <p className="lead">
+              Have access to over 2000 foods, including branded foods to help
+              you keep track of your macronutrients. <br /> The data retrieved
+              is sourced by The Agricultural Research Service (ARS), USDA.
+            </p>
+            <Button className="button" color="primary">
+              <a href="https://fdc.nal.usda.gov/about-us.html" target="_blank">
+                Learn More
+              </a>
+            </Button>
+          </div>
+          <div className="info1-right">
+            <Image className="food-database" fluid src={fooddatabase} />
+          </div>
+        </section>
+        <Image className="waves-1" src={wavesNegative}></Image>
+
+        <section className="info2">
+          <div className="info2-right">
+            <Image className="activity-img" fluid src={activity} />
+          </div>
+          <div className="info2-left">
+            <h2 className="display-4">Compendium of Activities</h2>
+            <p className="lead">
+              Calculate calories burned every day, from day-to-day activities to
+              intense calisthenics and sports <br /> provided by the "Compendium
+              of Physical Activities" from Arizona State University.
+            </p>
+            <Button className="button" color="primary">
+              <a
+                href="https://sites.google.com/site/compendiumofphysicalactivities/home?authuser=0"
+                target="_blank"
+              >
+                Learn More
+              </a>
+            </Button>
+          </div>
+        </section>
+        <Image className="waves-2" src={waves}></Image>
+
+        <section className="info3">
           <Row>
             <Col>
-              <Card className="card">
-                <Card.Img variant="top" src={food} />
-                <Card.Body>
-                  <Card.Title>Nutrition Tracking</Card.Title>
-                  <Card.Text>
-                    Have access to over 2000 foods, including branded foods to
-                    help you keep track of your macronutrients.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
+              <Image fluid src={meal} />
+              <h2 className="display-5">Log Your Meals & Activity</h2>
+              <p className="lead">
+                Use the application to track your food and activities. Know
+                exactly how much macronutrients you are intaking.{" "}
+              </p>
             </Col>
-
             <Col>
-              <Card className="card">
-                <Card.Img variant="top" src={exercise} />
-                <Card.Body>
-                  <Card.Title>Activity Tracking</Card.Title>
-                  <Card.Text>
-                    Calculate calories burned with every day, day-to-day
-                    activities provided by the "Compendium of Physical
-                    Activities"
-                  </Card.Text>
-                </Card.Body>
-              </Card>
+              <Image fluid src={target} />
+              <h2 className="display-5">Set Your Targets</h2>
+              <p className="lead">
+                Set your Caloric Goals and target weight. Set your macronutrient
+                goals for macronutrients such as Protein, Carbohydrates, and
+                Fats.
+              </p>
             </Col>
-
             <Col>
-              <Card className="card">
-                <Card.Img variant="top" src={goals} />
-                <Card.Body>
-                  <Card.Title>Fitness Goals</Card.Title>
-                  <Card.Text>
-                    Set your desired calorie consumption per day and your target
-                    weight. Effortlessly track your progress.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
+              <Image fluid src={goal} />
+              <h2 className="display-5">Reach Your Goals</h2>
+              <p className="lead">
+                Track your progress, check your weight-loss projection and get
+                continual feedback through our visual graphs.
+              </p>
             </Col>
           </Row>
-        </div>
-      </Container>
-    </Styles>
+        </section>
+      </HomeStyled>
+    </>
   );
-}
+};
 
 export default Home;

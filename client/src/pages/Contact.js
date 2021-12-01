@@ -7,62 +7,60 @@ import Location from "../assets/Location.png";
 import Phone from "../assets/Phone.png";
 
 const Styles = styled.div`
-
-
-.text-3 {
+  .text-3 {
     text-align: center;
     max-width: 100%;
     height: auto;
-    font-size :70px;
+    font-size: 70px;
   }
-  
+
   .description {
     text-align: center;
     max-width: 100%;
     height: auto;
-    font-size : 20px;
+    font-size: 20px;
   }
 
- .Contact-Description {
-    text-align : center;
+  .Contact-Description {
+    text-align: center;
     line-height: 4;
-    
- }
-.Phone {
+  }
+  .Phone {
     height: 50px;
     width: 50px;
-}
+  }
 
-.Phonenumber {
+  .Phonenumber {
     display: inline-block;
-    margin-left: 30px; 
-    font-size:20px;
-}
+    margin-left: 30px;
+    font-size: 20px;
+  }
 
-.Mail-1 {
+  .Mail-1 {
     height: 50px;
     width: 50px;
-}
+  }
 
-.Email-2 {
+  .Email-2 {
     display: inline-block;
-    margin-left: 30px; 
-    font-size:20px;
-}
+    margin-left: 30px;
+    font-size: 20px;
+  }
 
-.Location {
+  .Location {
     height: 70px;
     width: 50px;
-}
+  }
 
-.Address {
+  .Address {
     display: inline-block;
-    margin-left: 30px; 
-    font-size:20px;
-}
+    margin-left: 30px;
+    font-size: 20px;
+  }
 
-
-.input[type=text], select, textarea {
+  .input[type="text"],
+  select,
+  textarea {
     width: 70%;
     padding: 12px;
     border: 3px solid #ccc;
@@ -70,42 +68,39 @@ const Styles = styled.div`
     box-sizing: border-box;
     margin-bottom: 16px;
     resize: vertical;
-    margin-left :80px;
+    margin-left: 80px;
   }
 
-.container1 {
-    text-align:center;
+  .container1 {
+    text-align: center;
     float: right;
-    margin-left : 40px;    
-}
+    margin-left: 40px;
+  }
 
- label {
+  label {
     padding: 20px 20px 20px 0;
     display: inline-block;
   }
 
-.title1 {
+  .title1 {
     margin-left: 50px;
-}
+  }
 
-input[type=submit] {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-left: 90px;
- 
-}
+  input[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 90px;
+  }
 
-.grid-container {
-   display: grid;
-   grid-template-columns 1fr 1fr;
-
-}
-
-}`;
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+`;
 
 const Contact = () => {
   return (

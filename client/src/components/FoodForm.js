@@ -28,10 +28,10 @@ const Styles = styled.div`
 
 const validationSchema = Yup.object().shape({
   foodName: Yup.string().min(3).max(99).required(),
-  protein: Yup.number().required().positive(),
   fat: Yup.number().required().positive(),
-  carbohydrate: Yup.number().required().positive(),
+  protein: Yup.number().required().positive(),
   calories: Yup.number().required().positive(),
+  carbohydrate: Yup.number().required().positive(),
   servingSize: Yup.number().required().positive().integer(),
 });
 
@@ -42,9 +42,9 @@ const FoodForm = () => {
   const formik = useFormik({
     initialValues: {
       foodName: "",
-      protein: "",
       fat: "",
       carbohydrate: "",
+      protein: "",
       calories: "",
       servingSize: "",
       UserId: isAuth.id,
@@ -89,18 +89,6 @@ const FoodForm = () => {
                 fullWidth
                 variant="outlined"
                 className="text-field"
-                id="protein"
-                name="protein"
-                label="Protein"
-                value={formik.values.protein}
-                onChange={formik.handleChange}
-                error={formik.touched.protein && Boolean(formik.errors.protein)}
-                helperText={formik.touched.protein && formik.errors.protein}
-              />
-              <TextField
-                fullWidth
-                variant="outlined"
-                className="text-field"
                 id="fat"
                 name="fat"
                 label="Fat"
@@ -125,6 +113,18 @@ const FoodForm = () => {
                 helperText={
                   formik.touched.carbohydrate && formik.errors.carbohydrate
                 }
+              />
+              <TextField
+                fullWidth
+                variant="outlined"
+                className="text-field"
+                id="protein"
+                name="protein"
+                label="Protein"
+                value={formik.values.protein}
+                onChange={formik.handleChange}
+                error={formik.touched.protein && Boolean(formik.errors.protein)}
+                helperText={formik.touched.protein && formik.errors.protein}
               />
               <TextField
                 fullWidth
