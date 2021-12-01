@@ -53,8 +53,7 @@ const NavigationBar = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav
-                className="mr-auto"
-                className="justify-content-end"
+                className="mr-auto justify-content-end"
                 style={{ width: "100%" }}
               >
                 <LinkContainer to="/">

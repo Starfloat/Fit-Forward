@@ -36,7 +36,7 @@ const SearchActivity = () => {
           console.log(data);
           const transformed = data
             .filter((val) => {
-              if (query == "") {
+              if (query === "") {
                 return null;
               } else if (
                 val.description.toLowerCase().includes(query.toLowerCase())

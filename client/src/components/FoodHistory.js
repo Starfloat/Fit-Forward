@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import MaterialTable from "material-table";
 
@@ -25,14 +25,6 @@ const FoodHistory = (props) => {
         console.log(transformed);
       });
   }, []);
-
-  // const deleteFood = () => {
-  //   axios
-  //     .delete("http://localhost:3001/foodintake", {
-  //       headers: { accessToken: localStorage.getItem("accessToken") },
-  //     })
-  //     .then(() => alert("delete success"));
-  // };
 
   return (
     <MaterialTable

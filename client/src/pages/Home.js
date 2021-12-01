@@ -81,7 +81,11 @@ const Home = () => {
               is sourced by The Agricultural Research Service (ARS), USDA.
             </p>
             <Button className="button" color="primary">
-              <a href="https://fdc.nal.usda.gov/about-us.html" target="_blank">
+              <a
+                href="https://fdc.nal.usda.gov/about-us.html"
+                target="_blank"
+                rel="noreferrer"
+              >
                 Learn More
               </a>
             </Button>
@@ -107,6 +111,7 @@ const Home = () => {
               <a
                 href="https://sites.google.com/site/compendiumofphysicalactivities/home?authuser=0"
                 target="_blank"
+                rel="noreferrer"
               >
                 Learn More
               </a>
