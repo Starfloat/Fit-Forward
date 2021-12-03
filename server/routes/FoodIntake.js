@@ -4,9 +4,13 @@ const { FoodIntake } = require("../models");
 
 const { validateToken } = require("../middleware/Authentication");
 
+const Op = require("sequelize").Op;
+const TODAY_START = new Date().setHours(0, 0, 0, 0);
+const NOW = new Date();
+
 router.get("/", validateToken, async (req, res) => {
   const listOfFoodIntake = await FoodIntake.findAll({
-    where: { UserId: req.user.id },
+    where: { UserId: req.user.id, createdAt: { [Op.gte]: TODAY_START } },
   });
   res.json({ foods: listOfFoodIntake });
 });
