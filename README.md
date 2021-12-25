@@ -2,6 +2,8 @@
 
 ## CSC-400 Capstone Project SCSU FALL 2021
 
+A simple web-based calorie, macronutrients and activity tracker.
+
 #### Getting Started
 
 Run `npm install` in both the client and server directory to download the necessary dependencies and node packages.
